@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terrazze di Via Fondazza - Guest Guide</title>
+  <style>
+    :root {
+      --bg: #eef0f4;
+      --card: #f7f7f8;
+      --text: #18213c;
+      --muted: #6b7890;
+      --border: #273454;
+      --primary: #0f1b3d;
+      --primary-hover: #162754;
+      --shadow: 0 8px 24px rgba(15, 27, 61, 0.08);
+      --radius-xl: 26px;
+      --radius-lg: 20px;
+      --radius-md: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    .hero,
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .hero-media {
+      position: relative;
+      min-height: 320px;
+      background: linear-gradient(135deg, #dfe5f0 0%, #f4f5f7 55%, #e8edf6 100%);
+    }
+
+    .hero img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-content,
+    .card {
+      padding: 28px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .space-top {
+      margin-top: 18px;
+    }
+
+    .button-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .lang-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      margin-top: 26px;
+    }
+
+    .primary-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 22px;
+    }
+
+    .docs-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 14px;
+    }
+
+    .lang-btn,
+    .action-btn,
+    .doc-btn,
+    .mini-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 62px;
+      padding: 14px 18px;
+      border-radius: 22px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .lang-btn,
+    .doc-btn,
+    .mini-btn {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+
+    .lang-btn:hover,
+    .lang-btn.active,
+    .doc-btn:hover,
+    .mini-btn:hover {
+      background: #e9edf5;
+    }
+
+    .action-btn {
+      background: var(--primary);
+      color: #fff;
+      border: 2px solid var(--border);
+    }
+
+    .action-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .info-grid,
+    .useful-grid,
+    .suggestions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 34px;
+    }
+
+    .info-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .info-item .label,
+    .useful-item .label {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .info-item .value,
+    .useful-item .value {
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .info-item .note,
+    .useful-item .note,
+    .muted {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 8px 0 24px;
+    }
+
+    .section-intro {
+      margin-bottom: 18px;
+      color: var(--muted);
+    }
+
+    .explore-card {
+      text-align: center;
+    }
+
+    .explore-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .useful-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .docs-grid,
+      .info-grid,
+      .useful-grid,
+      .suggestions-grid,
+      .explore-actions {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        padding: 14px;
+      }
+
+      .hero img,
+      .hero-media {
+        min-height: 220px;
+        height: 220px;
+      }
+
+      .hero-content,
+      .card {
+        padding: 20px;
+      }
+
+      .primary-grid,
+      .docs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lang-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .lang-btn {
+        min-height: 48px;
+        padding: 10px 6px;
+        font-size: 12px;
+        border-radius: 16px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-media">
+        <img id="cover-image" src="cover.jpg" alt="Terrazze di Via Fondazza" class="hidden">
+        <div id="cover-fallback" class="hero-fallback">Aggiungi qui la tua immagine di copertina come <strong style="margin-left:6px;">cover.jpg</strong></div>
+      </div>
+      <div class="hero-content">
+        <h1 id="apartment-name"></h1>
+        <p class="subtitle" id="subtitle-1"></p>
+        <p class="subtitle space-top" id="subtitle-2"></p>
+
+        <div class="button-grid lang-grid">
+          <button type="button" class="lang-btn" data-lang="it">Italiano</button>
+          <button type="button" class="lang-btn" data-lang="en">English</button>
+          <button type="button" class="lang-btn" data-lang="fr">Français</button>
+          <button type="button" class="lang-btn" data-lang="de">Deutsch</button>
+          <button type="button" class="lang-btn" data-lang="es">Español</button>
+        </div>
+
+        <div class="button-grid primary-grid">
+          <a class="action-btn" id="map-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <a class="action-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+
+        <div class="button-grid docs-grid hidden" id="docs-grid">
+          <a class="doc-btn" id="rules-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <a class="doc-btn" id="arrival-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <a class="doc-btn" id="pet-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <a class="doc-btn" id="extra-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="info-card">
+      <div class="info-grid">
+        <div class="info-stack">
+          <div class="info-item">
+            <span class="label" id="label-address"></span>
+            <div class="value" id="address-value"></div>
+          </div>
+
+          <div class="info-item">
+            <span class="label" id="label-checkin"></span>
+            <div class="value" id="checkin-value"></div>
+          </div>
+
+          <div class="info-item">
+            <span class="label" id="label-checkout"></span>
+            <div class="value" id="checkout-value"></div>
+          </div>
+        </div>
+
+        <div class="info-stack">
+          <div class="info-item">
+            <span class="label" id="label-wifi"></span>
+            <div class="value" id="wifi-name"></div>
+            <div class="note" id="wifi-password"></div>
+          </div>
+
+          <div class="info-item">
+            <span class="label" id="label-contact"></span>
+            <div class="value" id="contact-value"></div>
+            <div class="note" id="contact-note"></div>
+          </div>
+
+          <div class="info-item">
+            <span class="label" id="label-parking"></span>
+            <div class="value" id="parking-short"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="access-card">
+      <h2 id="access-title"></h2>
+      <p id="access-text"></p>
+      <p class="muted" id="access-note" style="margin-top:12px;"></p>
+    </section>
+
+    <section class="card" id="rules-card">
+      <h2 id="rules-title"></h2>
+      <ul id="rules-list"></ul>
+    </section>
+
+    <section class="card" id="waste-card">
+      <h2 id="waste-title"></h2>
+      <p id="waste-text"></p>
+      <p class="muted" id="waste-note" style="margin-top:12px;"></p>
+    </section>
+
+    <section class="card" id="checkout-card">
+      <h2 id="checkout-title"></h2>
+      <ul id="checkout-list"></ul>
+    </section>
+
+    <section class="card" id="suggestions-card">
+      <h2 id="suggestions-title"></h2>
+      <p class="section-intro" id="suggestions-note"></p>
+      <div class="suggestions-grid">
+        <div>
+          <h3 id="restaurants-title"></h3>
+          <ul id="restaurants-list"></ul>
+        </div>
+        <div>
+          <h3 id="aperitivo-title"></h3>
+          <ul id="aperitivo-list"></ul>
+        </div>
+      </div>
+      <div style="margin-top:24px;">
+        <h3 id="attractions-title"></h3>
+        <ul id="attractions-list"></ul>
+      </div>
+    </section>
+
+    <section class="card" id="useful-card">
+      <h2 id="useful-title"></h2>
+      <div class="useful-grid">
+        <div class="stack">
+          <div class="useful-item">
+            <span class="label" id="emergency-title"></span>
+            <div class="value">112</div>
+            <div class="note" id="emergency-112"></div>
+            <div class="value" style="margin-top:10px;">118</div>
+            <div class="note" id="emergency-118"></div>
+            <div class="value" style="margin-top:10px;">115</div>
+            <div class="note" id="emergency-115"></div>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div class="useful-item">
+            <span class="label" id="taxi-title"></span>
+            <div class="value" id="taxi-value"></div>
+            <div class="note" id="taxi-note"></div>
+            <div class="useful-actions">
+              <a class="mini-btn" id="taxi-call-btn" href="#" rel="noopener noreferrer"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card explore-card" id="explore-card">
+      <h2 id="explore-title"></h2>
+      <p class="section-intro" id="explore-text"></p>
+      <div class="explore-actions">
+        <a class="action-btn" id="discover-btn" href="https://www.bolognawelcome.com/it/" target="_blank" rel="noopener noreferrer"></a>
+        <a class="action-btn" id="events-btn" href="https://www.bolognawelcome.com/it/eventi/homepage" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+    </section>
+
+    <div class="footer" id="footer-text"></div>
+  </div>
+
+  <script>
+    const PROPERTY = {
+      apartmentName: "Terrazze di Via Fondazza",
+      coverImage: "cover.jpg",
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Via+Fondazza+39+Bologna",
+      whatsappUrl: "https://wa.me/393290624796",
+      whatsappDisplay: "+39 329 0624796",
+      address: "Via Fondazza 39, Bologna",
+      checkin: "15:00 - 00:00",
+      checkout: "10:00 - 10:30",
+      wifiName: "FASTWEB-DXSR29",
+      wifiPassword: "XR669H97RN",
+      parkingShort: "Garage San Petronio Vecchio (a pagamento con rilascio pass ZTL)",
+      documents: {
+        rules: {
+          it: "house-rules-it.pdf",
+          en: "house-rules-en.pdf",
+          fr: "house-rules-fr.pdf",
+          de: "house-rules-de.pdf",
+          es: "house-rules-es.pdf",
+          fallback: "house-rules-en.pdf"
+        },
+        arrival: {
+          it: "arrival-info-it.pdf",
+          en: "arrival-info-en.pdf",
+          fr: "arrival-info-fr.pdf",
+          de: "arrival-info-de.pdf",
+          es: "arrival-info-es.pdf",
+          fallback: "arrival-info-en.pdf"
+        },
+        pet: "",
+        extra: ""
+      },
+      usefulNumbers: {
+        taxiDisplay: "Taxi Bologna Cotabo: +39 051 372727",
+        taxiHref: "tel:+39051372727"
+      }
+    };
+
+    const CONTENT = {
+      it: {
+        pageTitle: "Guida Ospiti",
+        subtitle1: "Guest Guide / Guida Ospiti",
+        subtitle2: "Tutte le informazioni utili per un soggiorno semplice e piacevole nel cuore di Bologna.",
+        mapBtn: "📍 Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        rulesBtn: "📄 Regole complete",
+        arrivalBtn: "📘 Istruzioni arrivo",
+        petBtn: "🐾 Regole animali",
+        extraBtn: "📎 Informazioni extra",
+        labelAddress: "📍 Indirizzo",
+        labelCheckin: "🕒 Check-in",
+        labelCheckout: "🕘 Check-out",
+        labelWifi: "📶 Wi-Fi",
+        wifiPasswordLabel: "Password",
+        labelContact: "💬 Contatto",
+        contactNote: "Solo chat dalle 07:00 alle 22:00",
+        labelParking: "🚗 Parcheggio",
+        accessTitle: "🗝️ Accesso",
+        accessText: "L'Host fornira le istruzioni per aprire automaticamente il portone principale e il codice della keybox con le chiavi dell'appartamento.",
+        accessNote: "L'appartamento si trova in centro storico e in zona ZTL: se arrivi in auto ti consigliamo di utilizzare il Garage San Petronio Vecchio.",
+        rulesTitle: "🏡 Regole casa",
+        rulesList: [
+          "L'appartamento e a completa disposizione degli ospiti registrati per tutta la durata del soggiorno.",
+          "Sono presenti contenitori chiusi a chiave ad uso esclusivo dello staff: non tentare di aprirli.",
+          "E assolutamente vietato fumare all'interno dell'appartamento.",
+          "Non sovraccaricare l'impianto elettrico accendendo troppi elettrodomestici contemporaneamente.",
+          "Chiudere sempre finestre e portone d'ingresso quando uscite.",
+          "Al check-out riponete le chiavi nella keybox esattamente come all'arrivo e cambiate la combinazione dopo la chiusura.",
+          "Prima di partire vi chiediamo di chiudere porte e finestre, spegnere le luci, controllare i rubinetti e verificare di non aver dimenticato effetti personali.",
+          "Vi chiediamo di lasciare gli ambienti in ordine, evitando rifiuti in giro e pulendo gli utensili da cucina utilizzati.",
+          "Gli elettrodomestici vanno usati correttamente e non lasciati in funzione incustoditi.",
+          "In caso di distacco della corrente e necessario raggiungere l'armadio al piano terra, dopo le scale a destra, e riattivare il contatore alzando la leva.",
+          "L'appartamento si trova in pieno centro storico, all'interno della ZTL: non e raggiungibile in auto senza permesso.",
+          "Eventuali danni o smarrimento delle chiavi devono essere segnalati tempestivamente."
+        ],
+        wasteTitle: "♻️ Rifiuti",
+        wasteText: "E obbligatorio rispettare la raccolta differenziata secondo le modalita previste dal Comune di Bologna. Utilizzate i sacchetti appropriati: carta, plastica, umido, indifferenziata e vetro nell'apposito contenitore.",
+        wasteNote: "Quando mi passerai le istruzioni definitive sui rifiuti possiamo sostituire questo testo con il calendario preciso.",
+        checkoutTitle: "✅ Prima del check-out",
+        checkoutList: [
+          "Chiudere tutte le porte e le finestre.",
+          "Spegnere tutte le luci.",
+          "Verificare che i rubinetti siano ben chiusi.",
+          "Controllare di non aver dimenticato effetti personali.",
+          "Caricare la lavastoviglie e avviare il ciclo prima di uscire.",
+          "Riporre le chiavi nella keybox come all'ingresso."
+        ],
+        suggestionsTitle: "🍽️ Suggerimenti in zona",
+        suggestionsNote: "Questa zona e ideale per visitare Bologna a piedi. Da Via Fondazza puoi raggiungere facilmente Santo Stefano, Archiginnasio, Piazza Maggiore e le Due Torri.",
+        restaurantsTitle: "🍴 Ristoranti",
+        restaurantsList: [
+          "<strong>Osteria Le Sette Chiese</strong> - Via Borgonuovo 6/b. Ottima scelta per cucina tradizionale bolognese vicino a Santo Stefano.",
+          "<strong>Antica Trattoria Spiga</strong> - Via Broccaindosso 21/a. Molto apprezzata per crescentine, pasta fatta a mano e secondi della tradizione.",
+          "<strong>Cesarina</strong> - Piazza Santo Stefano. Ristorante classico in una delle piazze piu suggestive di Bologna.",
+          "<strong>Giampi e Ciccio</strong> - Via Luigi Carlo Farini 31/b. Piatti tipici della tradizione petroniana in ambiente semplice e autentico.",
+          "<strong>Buca delle Campane</strong> - Via Benedetto XIV 4/a. Buona scelta per pasta fresca e cena informale in centro."
+        ],
+        aperitivoTitle: "🥂 Aperitivo",
+        aperitivoList: [
+          "<strong>Ruggine</strong> - Vicolo Alemagna 2/c. Cocktail curati in un locale raccolto vicino a Santo Stefano.",
+          "<strong>Camera a Sud</strong> - Via Valdonica 5. Atmosfera calda e rilassata, ideale per vino e drink.",
+          "<strong>Le Stanze</strong> - Via del Borgo di San Pietro 1. Aperitivo in una location storica con affreschi.",
+          "<strong>Marsalino</strong> - Via Marsala 13/d. Locale vivace dall'aperitivo al dopocena.",
+          "<strong>Velluto</strong> - Via dei Toschi 2/g. Cocktail bar elegante e contemporaneo in centro."
+        ],
+        attractionsTitle: "🏛️ Luoghi da vedere",
+        attractionsList: [
+          "<strong>Casa Morandi</strong> - Via Fondazza 36. La storica casa di Giorgio Morandi, praticamente accanto all'appartamento.",
+          "<strong>Complesso di Santo Stefano</strong> - Piazza Santo Stefano. Uno dei luoghi piu iconici di Bologna, noto come Sette Chiese.",
+          "<strong>Palazzo dell'Archiginnasio</strong> - Piazza Galvani 1. Antica sede dell'Universita di Bologna con il celebre Teatro Anatomico.",
+          "<strong>Piazza Maggiore</strong> - Il cuore storico della citta, perfetto per iniziare la visita del centro.",
+          "<strong>Le Due Torri</strong> - Piazza di Porta Ravegnana. Simbolo di Bologna; la Torre degli Asinelli risulta attualmente chiusa al pubblico."
+        ],
+        usefulTitle: "📞 Numeri utili",
+        emergencyTitle: "Emergenze",
+        emergency112: "Numero unico di emergenza",
+        emergency118: "Emergenza sanitaria",
+        emergency115: "Vigili del fuoco",
+        taxiTitle: "Taxi",
+        taxiNote: "Servizio radio taxi Bologna",
+        taxiCallBtn: "📞 Chiama taxi",
+        exploreTitle: "✨ Continua a esplorare Bologna",
+        exploreText: "Se vuoi scoprire cosa vedere, fare o quali eventi ci sono in citta durante il soggiorno, qui trovi i riferimenti ufficiali aggiornati.",
+        discoverBtn: "🌆 Scopri Bologna",
+        eventsBtn: "🎭 Eventi in citta",
+        footerText: "Buon soggiorno a Bologna"
+      },
+      en: {
+        pageTitle: "Guest Guide",
+        subtitle1: "Guest Guide",
+        subtitle2: "All the useful information for a smooth and pleasant stay in the heart of Bologna.",
+        mapBtn: "📍 Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        rulesBtn: "📄 Full house rules",
+        arrivalBtn: "📘 Arrival instructions",
+        petBtn: "🐾 Pet rules",
+        extraBtn: "📎 Extra information",
+        labelAddress: "📍 Address",
+        labelCheckin: "🕒 Check-in",
+        labelCheckout: "🕘 Check-out",
+        labelWifi: "📶 Wi-Fi",
+        wifiPasswordLabel: "Password",
+        labelContact: "💬 Contact",
+        contactNote: "Chat only from 07:00 to 22:00",
+        labelParking: "🚗 Parking",
+        accessTitle: "🗝️ Access",
+        accessText: "The host will provide instructions to open the main entrance door remotely and the keybox code containing the apartment keys.",
+        accessNote: "The apartment is in Bologna's historic center and inside the ZTL area. If you arrive by car, we recommend using Garage San Petronio Vecchio.",
+        rulesTitle: "🏡 House rules",
+        rulesList: [
+          "The apartment is entirely available to registered guests for the whole stay.",
+          "Some locked storage units are reserved for staff use only. Please do not try to open them.",
+          "Smoking is strictly forbidden inside the apartment.",
+          "Please avoid overloading the electrical system by running too many appliances at the same time.",
+          "Always close windows and the main door when leaving the apartment.",
+          "At check-out, place the keys back in the keybox exactly as you found them and scramble the code again after closing it.",
+          "Before leaving, please close doors and windows, switch off the lights, check the taps and make sure you did not forget personal belongings.",
+          "Please leave the apartment tidy, avoid leaving rubbish around and clean any kitchen tools you used.",
+          "Appliances must be used correctly and should never be left running unattended.",
+          "If the power goes out, you need to reach the cabinet on the ground floor, after the stairs on the right, and lift the switch to reactivate power.",
+          "The apartment is located in the historic center, inside the ZTL restricted traffic area, and cannot be reached by car without permission.",
+          "Any damage or lost keys must be reported promptly."
+        ],
+        wasteTitle: "♻️ Waste",
+        wasteText: "Please follow Bologna's recycling rules. Use the appropriate bags for paper, plastic, organic waste, mixed waste and dispose of glass in the dedicated container.",
+        wasteNote: "This section can be updated with the exact local waste schedule as soon as it is available.",
+        checkoutTitle: "✅ Before check-out",
+        checkoutList: [
+          "Close all doors and windows.",
+          "Switch off all lights.",
+          "Make sure all taps are properly closed.",
+          "Check that you did not forget any personal belongings.",
+          "Load the dishwasher and start the cycle before leaving.",
+          "Put the keys back in the keybox as on arrival."
+        ],
+        suggestionsTitle: "🍽️ Local suggestions",
+        suggestionsNote: "This area is perfect for exploring Bologna on foot. From Via Fondazza you can easily reach Santo Stefano, the Archiginnasio, Piazza Maggiore and the Two Towers.",
+        restaurantsTitle: "🍴 Restaurants",
+        restaurantsList: [
+          "<strong>Osteria Le Sette Chiese</strong> - Via Borgonuovo 6/b. Great choice for traditional Bolognese cuisine near Santo Stefano.",
+          "<strong>Antica Trattoria Spiga</strong> - Via Broccaindosso 21/a. Highly appreciated for handmade pasta, crescentine and local dishes.",
+          "<strong>Cesarina</strong> - Piazza Santo Stefano. Classic restaurant in one of Bologna's most charming squares.",
+          "<strong>Giampi e Ciccio</strong> - Via Luigi Carlo Farini 31/b. Traditional local dishes in a simple and authentic atmosphere.",
+          "<strong>Buca delle Campane</strong> - Via Benedetto XIV 4/a. Good option for fresh pasta and an informal dinner in the city center."
+        ],
+        aperitivoTitle: "🥂 Aperitivo",
+        aperitivoList: [
+          "<strong>Ruggine</strong> - Vicolo Alemagna 2/c. Carefully made cocktails in an intimate venue near Santo Stefano.",
+          "<strong>Camera a Sud</strong> - Via Valdonica 5. Warm and relaxed atmosphere, ideal for wine and drinks.",
+          "<strong>Le Stanze</strong> - Via del Borgo di San Pietro 1. Aperitivo in a spectacular historic venue with frescoes.",
+          "<strong>Marsalino</strong> - Via Marsala 13/d. Lively spot from aperitivo time to late evening.",
+          "<strong>Velluto</strong> - Via dei Toschi 2/g. Elegant and contemporary cocktail bar in the center."
+        ],
+        attractionsTitle: "🏛️ Points of interest",
+        attractionsList: [
+          "<strong>Casa Morandi</strong> - Via Fondazza 36. Giorgio Morandi's historic house, almost next door to the apartment.",
+          "<strong>Santo Stefano Complex</strong> - Piazza Santo Stefano. One of Bologna's most iconic landmarks, also known as the Seven Churches.",
+          "<strong>Archiginnasio Palace</strong> - Piazza Galvani 1. Former seat of the University of Bologna with the famous Anatomical Theatre.",
+          "<strong>Piazza Maggiore</strong> - The historic heart of the city and a perfect starting point for visiting the center.",
+          "<strong>The Two Towers</strong> - Piazza di Porta Ravegnana. One of Bologna's best-known symbols; the Asinelli Tower is currently closed to the public."
+        ],
+        usefulTitle: "📞 Useful numbers",
+        emergencyTitle: "Emergency",
+        emergency112: "Single emergency number",
+        emergency118: "Medical emergency",
+        emergency115: "Fire brigade",
+        taxiTitle: "Taxi",
+        taxiNote: "Bologna radio taxi service",
+        taxiCallBtn: "📞 Call taxi",
+        exploreTitle: "✨ Keep exploring Bologna",
+        exploreText: "If you would like to discover what to see, what to do or which events are happening during your stay, here are the official updated references.",
+        discoverBtn: "🌆 Discover Bologna",
+        eventsBtn: "🎭 Events in town",
+        footerText: "Enjoy your stay in Bologna"
+      },
+      fr: {
+        pageTitle: "Guide d'accueil",
+        subtitle1: "Guide d'accueil",
+        subtitle2: "Toutes les informations utiles pour un sejour simple et agreable au coeur de Bologne.",
+        mapBtn: "📍 Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        rulesBtn: "📄 Regles completes",
+        arrivalBtn: "📘 Instructions d'arrivee",
+        petBtn: "🐾 Regles animaux",
+        extraBtn: "📎 Informations extra",
+        labelAddress: "📍 Adresse",
+        labelCheckin: "🕒 Check-in",
+        labelCheckout: "🕘 Check-out",
+        labelWifi: "📶 Wi-Fi",
+        wifiPasswordLabel: "Mot de passe",
+        labelContact: "💬 Contact",
+        contactNote: "Chat uniquement de 07:00 a 22:00",
+        labelParking: "🚗 Parking",
+        accessTitle: "🗝️ Acces",
+        accessText: "L'hote fournira les instructions pour ouvrir a distance la porte principale et le code de la boite a cle avec les cles de l'appartement.",
+        accessNote: "L'appartement se trouve dans le centre historique et dans la zone ZTL. Si vous arrivez en voiture, nous vous conseillons le Garage San Petronio Vecchio.",
+        rulesTitle: "🏡 Regles de la maison",
+        rulesList: [
+          "L'appartement est entierement reserve aux voyageurs enregistres pendant tout le sejour.",
+          "Certains espaces fermes a cle sont reserves exclusivement au personnel. Merci de ne pas essayer de les ouvrir.",
+          "Il est strictement interdit de fumer a l'interieur de l'appartement.",
+          "Merci d'eviter de faire fonctionner trop d'appareils en meme temps afin de ne pas surcharger le systeme electrique.",
+          "Fermez toujours les fenetres et la porte d'entree lorsque vous sortez.",
+          "Au depart, remettez les cles dans la keybox exactement comme a l'arrivee et changez la combinaison apres fermeture.",
+          "Avant de partir, merci de fermer portes et fenetres, eteindre les lumieres, verifier les robinets et ne rien oublier.",
+          "Merci de laisser l'appartement en ordre, sans dechets disperses, et de nettoyer les ustensiles de cuisine utilises.",
+          "Les appareils doivent etre utilises correctement et ne pas rester allumes sans surveillance.",
+          "En cas de coupure de courant, il faut rejoindre l'armoire au rez-de-chaussee, apres l'escalier sur la droite, et relever l'interrupteur.",
+          "L'appartement se trouve dans le centre historique, a l'interieur de la zone a trafic limite, et n'est pas accessible en voiture sans autorisation.",
+          "Tout dommage ou perte de cles doit etre signale rapidement."
+        ],
+        wasteTitle: "♻️ Dechets",
+        wasteText: "Merci de respecter le tri selectif de la ville de Bologne. Utilisez les sacs appropries pour papier, plastique, dechets organiques, dechets residuels et deposez le verre dans le conteneur dedie.",
+        wasteNote: "Nous pourrons remplacer ce texte par le calendrier exact des dechets des que vous me l'enverrez.",
+        checkoutTitle: "✅ Avant le check-out",
+        checkoutList: [
+          "Fermer toutes les portes et fenetres.",
+          "Eteindre toutes les lumieres.",
+          "Verifier que tous les robinets sont bien fermes.",
+          "Verifier de ne pas avoir oublie d'effets personnels.",
+          "Remplir le lave-vaisselle et lancer le cycle avant de partir.",
+          "Remettre les cles dans la keybox comme a l'arrivee."
+        ],
+        suggestionsTitle: "🍽️ Conseils a proximite",
+        suggestionsNote: "Ce quartier est ideal pour visiter Bologne a pied. Depuis Via Fondazza, vous rejoignez facilement Santo Stefano, l'Archiginnasio, Piazza Maggiore et les Deux Tours.",
+        restaurantsTitle: "🍴 Restaurants",
+        restaurantsList: [
+          "<strong>Osteria Le Sette Chiese</strong> - Via Borgonuovo 6/b. Excellent choix pour la cuisine traditionnelle bolognaise pres de Santo Stefano.",
+          "<strong>Antica Trattoria Spiga</strong> - Via Broccaindosso 21/a. Tres appreciee pour les pates maison et les specialites locales.",
+          "<strong>Cesarina</strong> - Piazza Santo Stefano. Restaurant classique dans l'une des plus belles places de Bologne.",
+          "<strong>Giampi e Ciccio</strong> - Via Luigi Carlo Farini 31/b. Cuisine traditionnelle dans une ambiance simple et authentique.",
+          "<strong>Buca delle Campane</strong> - Via Benedetto XIV 4/a. Bonne option pour les pates fraiches et un diner convivial."
+        ],
+        aperitivoTitle: "🥂 Aperitif",
+        aperitivoList: [
+          "<strong>Ruggine</strong> - Vicolo Alemagna 2/c. Cocktails soignes dans un lieu intimiste pres de Santo Stefano.",
+          "<strong>Camera a Sud</strong> - Via Valdonica 5. Atmosphere chaleureuse et detendue pour vin et cocktails.",
+          "<strong>Le Stanze</strong> - Via del Borgo di San Pietro 1. Aperitif dans un lieu historique tres scenographique.",
+          "<strong>Marsalino</strong> - Via Marsala 13/d. Petit endroit anime pour l'aperitif et la soiree.",
+          "<strong>Velluto</strong> - Via dei Toschi 2/g. Bar a cocktails elegant et contemporain en centre-ville."
+        ],
+        attractionsTitle: "🏛️ Lieux a voir",
+        attractionsList: [
+          "<strong>Casa Morandi</strong> - Via Fondazza 36. Maison historique de Giorgio Morandi, presque a cote de l'appartement.",
+          "<strong>Complexe de Santo Stefano</strong> - Piazza Santo Stefano. L'un des lieux les plus emblematiques de Bologne.",
+          "<strong>Palais de l'Archiginnasio</strong> - Piazza Galvani 1. Ancien siege de l'Universite de Bologne avec le Theatre Anatomique.",
+          "<strong>Piazza Maggiore</strong> - Le coeur historique de la ville, ideal pour commencer la visite.",
+          "<strong>Les Deux Tours</strong> - Piazza di Porta Ravegnana. Symbole de Bologne; la tour Asinelli est actuellement fermee au public."
+        ],
+        usefulTitle: "📞 Numeros utiles",
+        emergencyTitle: "Urgences",
+        emergency112: "Numero d'urgence unique",
+        emergency118: "Urgence medicale",
+        emergency115: "Pompiers",
+        taxiTitle: "Taxi",
+        taxiNote: "Service de radio taxi de Bologne",
+        taxiCallBtn: "📞 Appeler un taxi",
+        exploreTitle: "✨ Continuez a explorer Bologne",
+        exploreText: "Si vous souhaitez decouvrir quoi voir, quoi faire ou les evenements en ville pendant votre sejour, voici les references officielles mises a jour.",
+        discoverBtn: "🌆 Decouvrir Bologne",
+        eventsBtn: "🎭 Evenements en ville",
+        footerText: "Bon sejour a Bologne"
+      },
+      de: {
+        pageTitle: "Gastfuhrer",
+        subtitle1: "Gastfuhrer",
+        subtitle2: "Alle wichtigen Informationen fur einen angenehmen Aufenthalt im Herzen von Bologna.",
+        mapBtn: "📍 Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        rulesBtn: "📄 Hausregeln",
+        arrivalBtn: "📘 Anreisehinweise",
+        petBtn: "🐾 Regeln fur Tiere",
+        extraBtn: "📎 Zusatzinformationen",
+        labelAddress: "📍 Adresse",
+        labelCheckin: "🕒 Check-in",
+        labelCheckout: "🕘 Check-out",
+        labelWifi: "📶 Wi-Fi",
+        wifiPasswordLabel: "Passwort",
+        labelContact: "💬 Kontakt",
+        contactNote: "Nur Chat von 07:00 bis 22:00",
+        labelParking: "🚗 Parkplatz",
+        accessTitle: "🗝️ Zugang",
+        accessText: "Der Host sendet die Anweisungen zum automatischen Offnen des Hauseingangs sowie den Code der Schlusselbox mit den Wohnungsschlusseln.",
+        accessNote: "Die Wohnung befindet sich im historischen Zentrum und in der ZTL-Zone. Wenn Sie mit dem Auto anreisen, empfehlen wir die Garage San Petronio Vecchio.",
+        rulesTitle: "🏡 Hausregeln",
+        rulesList: [
+          "Die Wohnung steht den registrierten Gasten wahrend des gesamten Aufenthalts vollstandig zur Verfugung.",
+          "Einige abgeschlossene Bereiche sind ausschliesslich fur das Personal bestimmt. Bitte nicht offnen.",
+          "Rauchen ist in der Wohnung strengstens verboten.",
+          "Bitte uberlasten Sie die Elektroanlage nicht, indem Sie zu viele Gerate gleichzeitig benutzen.",
+          "Schliessen Sie beim Verlassen immer Fenster und Eingangstur.",
+          "Legen Sie beim Check-out die Schlussel genauso wie bei der Ankunft in die Keybox zuruck und verandern Sie danach wieder den Code.",
+          "Vor der Abreise bitten wir Sie, Turen und Fenster zu schliessen, die Lichter auszuschalten, die Wasserhahne zu prufen und keine personlichen Gegenstande zu vergessen.",
+          "Bitte hinterlassen Sie die Wohnung ordentlich, ohne Mull liegen zu lassen, und reinigen Sie die benutzten Kuchenutensilien.",
+          "Haushaltsgerate bitte korrekt verwenden und nicht unbeaufsichtigt laufen lassen.",
+          "Bei einem Stromausfall erreichen Sie den Schrank im Erdgeschoss, nach der Treppe rechts, und schalten den Hebel wieder nach oben.",
+          "Die Wohnung liegt im historischen Zentrum innerhalb der verkehrsbeschrankten ZTL-Zone und ist ohne Genehmigung nicht mit dem Auto erreichbar.",
+          "Schaden oder verlorene Schlussel mussen umgehend gemeldet werden."
+        ],
+        wasteTitle: "♻️ Mull",
+        wasteText: "Bitte beachten Sie die Mulltrennung der Stadt Bologna. Verwenden Sie die richtigen Beutel fur Papier, Plastik, Biomull und Restmull; Glas gehort in den entsprechenden Container.",
+        wasteNote: "Diesen Abschnitt konnen wir spater mit dem genauen Abfallkalender aktualisieren.",
+        checkoutTitle: "✅ Vor dem Check-out",
+        checkoutList: [
+          "Alle Turen und Fenster schliessen.",
+          "Alle Lichter ausschalten.",
+          "Prufen, dass alle Wasserhahne geschlossen sind.",
+          "Sicherstellen, dass keine personlichen Gegenstande vergessen wurden.",
+          "Die Spulmaschine beladen und vor der Abreise starten.",
+          "Die Schlussel wie bei der Ankunft in die Keybox legen."
+        ],
+        suggestionsTitle: "🍽️ Tipps in der Umgebung",
+        suggestionsNote: "Diese Gegend eignet sich ideal, um Bologna zu Fuss zu erkunden. Von der Via Fondazza erreichen Sie leicht Santo Stefano, das Archiginnasio, die Piazza Maggiore und die Zwei Turme.",
+        restaurantsTitle: "🍴 Restaurants",
+        restaurantsList: [
+          "<strong>Osteria Le Sette Chiese</strong> - Via Borgonuovo 6/b. Sehr gute Wahl fur traditionelle bologneser Kuche nahe Santo Stefano.",
+          "<strong>Antica Trattoria Spiga</strong> - Via Broccaindosso 21/a. Bekannt fur hausgemachte Pasta und regionale Spezialitaten.",
+          "<strong>Cesarina</strong> - Piazza Santo Stefano. Klassisches Restaurant auf einem der schonsten Platze Bolognas.",
+          "<strong>Giampi e Ciccio</strong> - Via Luigi Carlo Farini 31/b. Traditionelle Gerichte in einfacher und authentischer Atmosphare.",
+          "<strong>Buca delle Campane</strong> - Via Benedetto XIV 4/a. Gute Wahl fur frische Pasta und ein ungezwungenes Abendessen."
+        ],
+        aperitivoTitle: "🥂 Aperitif",
+        aperitivoList: [
+          "<strong>Ruggine</strong> - Vicolo Alemagna 2/c. Sorgfaltig gemixte Cocktails in einem kleinen Lokal nahe Santo Stefano.",
+          "<strong>Camera a Sud</strong> - Via Valdonica 5. Warme und entspannte Atmosphare fur Wein und Drinks.",
+          "<strong>Le Stanze</strong> - Via del Borgo di San Pietro 1. Aperitif in einer beeindruckenden historischen Location.",
+          "<strong>Marsalino</strong> - Via Marsala 13/d. Lebhafter Ort vom Aperitif bis spater am Abend.",
+          "<strong>Velluto</strong> - Via dei Toschi 2/g. Elegante und moderne Cocktailbar im Zentrum."
+        ],
+        attractionsTitle: "🏛️ Sehenswertes",
+        attractionsList: [
+          "<strong>Casa Morandi</strong> - Via Fondazza 36. Das historische Haus von Giorgio Morandi, fast direkt neben der Wohnung.",
+          "<strong>Santo-Stefano-Komplex</strong> - Piazza Santo Stefano. Einer der bekanntesten Orte Bolognas.",
+          "<strong>Palazzo dell'Archiginnasio</strong> - Piazza Galvani 1. Ehemaliger Sitz der Universitat Bologna mit dem Anatomischen Theater.",
+          "<strong>Piazza Maggiore</strong> - Das historische Herz der Stadt und ideal als Ausgangspunkt fur den Rundgang.",
+          "<strong>Die Zwei Turme</strong> - Piazza di Porta Ravegnana. Wahrzeichen von Bologna; der Asinelli-Turm ist derzeit fur Besucher geschlossen."
+        ],
+        usefulTitle: "📞 Wichtige Nummern",
+        emergencyTitle: "Notfalle",
+        emergency112: "Einheitliche Notrufnummer",
+        emergency118: "Medizinischer Notdienst",
+        emergency115: "Feuerwehr",
+        taxiTitle: "Taxi",
+        taxiNote: "Bologna Funk-Taxi",
+        taxiCallBtn: "📞 Taxi anrufen",
+        exploreTitle: "✨ Bologna weiter entdecken",
+        exploreText: "Wenn Sie wahrend Ihres Aufenthalts entdecken mochten, was man sehen, unternehmen oder welche Veranstaltungen stattfinden, finden Sie hier die offiziellen aktuellen Links.",
+        discoverBtn: "🌆 Bologna entdecken",
+        eventsBtn: "🎭 Veranstaltungen",
+        footerText: "Schonen Aufenthalt in Bologna"
+      },
+      es: {
+        pageTitle: "Guia del huesped",
+        subtitle1: "Guia del huesped",
+        subtitle2: "Toda la informacion util para una estancia comoda y agradable en el corazon de Bolonia.",
+        mapBtn: "📍 Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        rulesBtn: "📄 Reglas completas",
+        arrivalBtn: "📘 Instrucciones de llegada",
+        petBtn: "🐾 Reglas para mascotas",
+        extraBtn: "📎 Informacion extra",
+        labelAddress: "📍 Direccion",
+        labelCheckin: "🕒 Check-in",
+        labelCheckout: "🕘 Check-out",
+        labelWifi: "📶 Wi-Fi",
+        wifiPasswordLabel: "Contrasena",
+        labelContact: "💬 Contacto",
+        contactNote: "Solo chat de 07:00 a 22:00",
+        labelParking: "🚗 Aparcamiento",
+        accessTitle: "🗝️ Acceso",
+        accessText: "El anfitrion enviara las instrucciones para abrir de forma automatica la puerta principal y el codigo de la keybox con las llaves del apartamento.",
+        accessNote: "El apartamento esta en el centro historico y dentro de la zona ZTL. Si llegas en coche, recomendamos el Garage San Petronio Vecchio.",
+        rulesTitle: "🏡 Reglas de la casa",
+        rulesList: [
+          "El apartamento esta completamente a disposicion de los huespedes registrados durante toda la estancia.",
+          "Algunos espacios cerrados con llave estan reservados solo para el personal. No intentes abrirlos.",
+          "Esta estrictamente prohibido fumar dentro del apartamento.",
+          "Evita sobrecargar la instalacion electrica utilizando demasiados electrodomesticos al mismo tiempo.",
+          "Cierra siempre las ventanas y la puerta principal cuando salgas.",
+          "Al hacer el check-out, deja las llaves en la keybox exactamente como estaban a la llegada y cambia de nuevo la combinacion despues de cerrarla.",
+          "Antes de salir, por favor cierra puertas y ventanas, apaga las luces, revisa los grifos y comprueba que no olvides objetos personales.",
+          "Te pedimos dejar el apartamento ordenado, sin basura fuera de lugar, y limpiar los utensilios de cocina utilizados.",
+          "Los electrodomesticos deben usarse correctamente y no dejarse funcionando sin supervision.",
+          "Si se corta la luz, hay que llegar al armario de la planta baja, despues de las escaleras a la derecha, y volver a subir la palanca.",
+          "El apartamento esta en el centro historico, dentro de la zona de trafico limitado, y no se puede alcanzar en coche sin permiso.",
+          "Cualquier dano o perdida de llaves debe comunicarse rapidamente."
+        ],
+        wasteTitle: "♻️ Residuos",
+        wasteText: "Es obligatorio respetar la recogida selectiva de Bolonia. Utiliza las bolsas adecuadas para papel, plastico, organico y resto; el vidrio debe llevarse al contenedor correspondiente.",
+        wasteNote: "Podemos actualizar esta seccion con el calendario exacto de residuos cuando lo tengas.",
+        checkoutTitle: "✅ Antes del check-out",
+        checkoutList: [
+          "Cerrar todas las puertas y ventanas.",
+          "Apagar todas las luces.",
+          "Comprobar que todos los grifos estan bien cerrados.",
+          "Verificar que no se olviden objetos personales.",
+          "Cargar el lavavajillas y ponerlo en marcha antes de salir.",
+          "Dejar las llaves en la keybox como al llegar."
+        ],
+        suggestionsTitle: "🍽️ Recomendaciones cercanas",
+        suggestionsNote: "Esta zona es ideal para visitar Bolonia a pie. Desde Via Fondazza puedes llegar facilmente a Santo Stefano, Archiginnasio, Piazza Maggiore y las Dos Torres.",
+        restaurantsTitle: "🍴 Restaurantes",
+        restaurantsList: [
+          "<strong>Osteria Le Sette Chiese</strong> - Via Borgonuovo 6/b. Excelente opcion de cocina tradicional boloñesa cerca de Santo Stefano.",
+          "<strong>Antica Trattoria Spiga</strong> - Via Broccaindosso 21/a. Muy valorada por la pasta casera y la cocina local.",
+          "<strong>Cesarina</strong> - Piazza Santo Stefano. Restaurante clasico en una de las plazas mas bonitas de Bolonia.",
+          "<strong>Giampi e Ciccio</strong> - Via Luigi Carlo Farini 31/b. Platos tipicos en un ambiente sencillo y autentico.",
+          "<strong>Buca delle Campane</strong> - Via Benedetto XIV 4/a. Buena opcion para pasta fresca y cena informal en el centro."
+        ],
+        aperitivoTitle: "🥂 Aperitivo",
+        aperitivoList: [
+          "<strong>Ruggine</strong> - Vicolo Alemagna 2/c. Cocteles cuidados en un local pequeno cerca de Santo Stefano.",
+          "<strong>Camera a Sud</strong> - Via Valdonica 5. Ambiente calido y relajado para vino y copas.",
+          "<strong>Le Stanze</strong> - Via del Borgo di San Pietro 1. Aperitivo en un lugar historico con frescos.",
+          "<strong>Marsalino</strong> - Via Marsala 13/d. Local animado desde el aperitivo hasta la noche.",
+          "<strong>Velluto</strong> - Via dei Toschi 2/g. Cocteleria elegante y contemporanea en el centro."
+        ],
+        attractionsTitle: "🏛️ Lugares de interes",
+        attractionsList: [
+          "<strong>Casa Morandi</strong> - Via Fondazza 36. La casa historica de Giorgio Morandi, practicamente al lado del apartamento.",
+          "<strong>Complejo de Santo Stefano</strong> - Piazza Santo Stefano. Uno de los lugares mas iconicos de Bolonia.",
+          "<strong>Palacio del Archiginnasio</strong> - Piazza Galvani 1. Antigua sede de la Universidad de Bolonia con el famoso Teatro Anatomico.",
+          "<strong>Piazza Maggiore</strong> - El corazon historico de la ciudad y un gran punto de partida para la visita.",
+          "<strong>Las Dos Torres</strong> - Piazza di Porta Ravegnana. Simbolo de Bolonia; la Torre degli Asinelli esta actualmente cerrada al publico."
+        ],
+        usefulTitle: "📞 Numeros utiles",
+        emergencyTitle: "Emergencias",
+        emergency112: "Numero unico de emergencia",
+        emergency118: "Emergencia sanitaria",
+        emergency115: "Bomberos",
+        taxiTitle: "Taxi",
+        taxiNote: "Servicio de radio taxi de Bolonia",
+        taxiCallBtn: "📞 Llamar taxi",
+        exploreTitle: "✨ Sigue explorando Bolonia",
+        exploreText: "Si quieres descubrir que ver, que hacer o que eventos hay en la ciudad durante tu estancia, aqui tienes las referencias oficiales actualizadas.",
+        discoverBtn: "🌆 Descubrir Bolonia",
+        eventsBtn: "🎭 Eventos en la ciudad",
+        footerText: "Feliz estancia en Bolonia"
+      }
+    };
+
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value || "";
+    }
+
+    function setHtmlList(id, items) {
+      const list = document.getElementById(id);
+      if (!list) return;
+      list.innerHTML = "";
+      (items || []).forEach((item) => {
+        const li = document.createElement("li");
+        li.innerHTML = item;
+        list.appendChild(li);
+      });
+    }
+
+    function setButton(id, label, href) {
+      const el = document.getElementById(id);
+      if (!el) return false;
+      el.textContent = label || "";
+      if (href) {
+        el.href = href;
+        el.classList.remove("hidden");
+        return true;
+      }
+      el.classList.add("hidden");
+      return false;
+    }
+
+    function getDocumentForLang(docConfig, lang) {
+      if (!docConfig) return "";
+      if (typeof docConfig === "string") return docConfig;
+      return docConfig[lang] || docConfig.fallback || "";
+    }
+
+    function render(lang) {
+      const t = CONTENT[lang] || CONTENT.it;
+
+      document.title = `${PROPERTY.apartmentName} - ${t.pageTitle}`;
+      document.documentElement.lang = lang;
+
+      setText("apartment-name", PROPERTY.apartmentName);
+      setText("subtitle-1", t.subtitle1);
+      setText("subtitle-2", t.subtitle2);
+
+      setText("label-address", t.labelAddress);
+      setText("address-value", PROPERTY.address);
+      setText("label-checkin", t.labelCheckin);
+      setText("checkin-value", PROPERTY.checkin);
+      setText("label-checkout", t.labelCheckout);
+      setText("checkout-value", PROPERTY.checkout);
+      setText("label-wifi", t.labelWifi);
+      setText("wifi-name", PROPERTY.wifiName);
+      setText("wifi-password", `${t.wifiPasswordLabel}: ${PROPERTY.wifiPassword}`);
+      setText("label-contact", t.labelContact);
+      setText("contact-value", PROPERTY.whatsappDisplay);
+      setText("contact-note", t.contactNote);
+      setText("label-parking", t.labelParking);
+      setText("parking-short", PROPERTY.parkingShort);
+
+      setText("access-title", t.accessTitle);
+      setText("access-text", t.accessText);
+      setText("access-note", t.accessNote);
+
+      setText("rules-title", t.rulesTitle);
+      setHtmlList("rules-list", t.rulesList);
+
+      setText("waste-title", t.wasteTitle);
+      setText("waste-text", t.wasteText);
+      setText("waste-note", t.wasteNote);
+
+      setText("checkout-title", t.checkoutTitle);
+      setHtmlList("checkout-list", t.checkoutList);
+
+      setText("suggestions-title", t.suggestionsTitle);
+      setText("suggestions-note", t.suggestionsNote);
+      setText("restaurants-title", t.restaurantsTitle);
+      setHtmlList("restaurants-list", t.restaurantsList);
+      setText("aperitivo-title", t.aperitivoTitle);
+      setHtmlList("aperitivo-list", t.aperitivoList);
+      setText("attractions-title", t.attractionsTitle);
+      setHtmlList("attractions-list", t.attractionsList);
+
+      setText("useful-title", t.usefulTitle);
+      setText("emergency-title", t.emergencyTitle);
+      setText("emergency-112", t.emergency112);
+      setText("emergency-118", t.emergency118);
+      setText("emergency-115", t.emergency115);
+      setText("taxi-title", t.taxiTitle);
+      setText("taxi-value", PROPERTY.usefulNumbers.taxiDisplay);
+      setText("taxi-note", t.taxiNote);
+      const taxiBtn = document.getElementById("taxi-call-btn");
+      taxiBtn.textContent = t.taxiCallBtn;
+      taxiBtn.href = PROPERTY.usefulNumbers.taxiHref;
+
+      setText("explore-title", t.exploreTitle);
+      setText("explore-text", t.exploreText);
+      setText("discover-btn", t.discoverBtn);
+      setText("events-btn", t.eventsBtn);
+
+      setText("footer-text", t.footerText);
+
+      document.getElementById("map-btn").textContent = t.mapBtn;
+      document.getElementById("map-btn").href = PROPERTY.mapsUrl;
+      document.getElementById("whatsapp-btn").textContent = t.whatsappBtn;
+      document.getElementById("whatsapp-btn").href = PROPERTY.whatsappUrl;
+
+      const hasDocs = [
+        setButton("rules-btn", t.rulesBtn, getDocumentForLang(PROPERTY.documents.rules, lang)),
+        setButton("arrival-btn", t.arrivalBtn, getDocumentForLang(PROPERTY.documents.arrival, lang)),
+        setButton("pet-btn", t.petBtn, getDocumentForLang(PROPERTY.documents.pet, lang)),
+        setButton("extra-btn", t.extraBtn, getDocumentForLang(PROPERTY.documents.extra, lang))
+      ].some(Boolean);
+
+      document.getElementById("docs-grid").classList.toggle("hidden", !hasDocs);
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+    }
+
+    const coverImage = document.getElementById("cover-image");
+    const coverFallback = document.getElementById("cover-fallback");
+    coverImage.onload = () => {
+      coverImage.classList.remove("hidden");
+      coverFallback.classList.add("hidden");
+    };
+    coverImage.onerror = () => {
+      coverImage.classList.add("hidden");
+      coverFallback.classList.remove("hidden");
+    };
+    coverImage.src = PROPERTY.coverImage;
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => render(btn.dataset.lang));
+    });
+
+    render("it");
+  </script>
+</body>
+</html>
