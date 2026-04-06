@@ -227,13 +227,6 @@
       display: none !important;
     }
 
-    .footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      padding: 8px 0 24px;
-    }
-
     .section-intro {
       margin-bottom: 18px;
       color: var(--muted);
@@ -255,6 +248,41 @@
       gap: 10px;
       flex-wrap: wrap;
       margin-top: 12px;
+    }
+
+    .ecosystem-card {
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .ecosystem-kicker {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid #fed7aa;
+      background: #fff7ed;
+      color: #9a3412;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ecosystem-title {
+      margin-bottom: 12px;
+    }
+
+    .ecosystem-text {
+      max-width: 640px;
+      margin: 0 auto 18px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .ecosystem-actions {
+      max-width: 360px;
+      margin: 0 auto;
     }
 
     @media (max-width: 900px) {
@@ -311,7 +339,7 @@
   <div class="wrap">
     <section class="hero">
       <div class="hero-media">
-        <img id="cover-image" src="cover.jpg" alt="Terrazze di Via Fondazza" class="hidden">
+        <img id="cover-image" src="" alt="Terrazze di Via Fondazza" class="hidden">
         <div id="cover-fallback" class="hero-fallback">Aggiungi qui la tua immagine di copertina come <strong style="margin-left:6px;">cover.jpg</strong></div>
       </div>
       <div class="hero-content">
@@ -459,7 +487,14 @@
       </div>
     </section>
 
-    <div class="footer" id="footer-text"></div>
+    <section class="card ecosystem-card" id="ecosystem-card">
+      <div class="ecosystem-kicker" id="ecosystem-kicker"></div>
+      <h2 class="ecosystem-title" id="ecosystem-title"></h2>
+      <p class="ecosystem-text" id="ecosystem-text"></p>
+      <div class="ecosystem-actions">
+        <a class="action-btn" id="ecosystem-btn" href="https://ecosistema-fga.fgahousesolutions.workers.dev/#structures" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+    </section>
   </div>
 
   <script>
@@ -511,7 +546,7 @@
         rulesBtn: "📄 Regole complete",
         arrivalBtn: "📘 Istruzioni arrivo",
         petBtn: "🐾 Regole animali",
-        extraBtn: "📎 Informazioni extra",
+        extraBtn: "📍 Altri indirizzi consigliati",
         labelAddress: "📍 Indirizzo",
         labelCheckin: "🕒 Check-in",
         labelCheckout: "🕘 Check-out",
@@ -588,7 +623,10 @@
         exploreText: "Se vuoi scoprire cosa vedere, fare o quali eventi ci sono in citta durante il soggiorno, qui trovi i riferimenti ufficiali aggiornati.",
         discoverBtn: "🌆 Scopri Bologna",
         eventsBtn: "🎭 Eventi in citta",
-        footerText: "Buon soggiorno a Bologna"
+        ecosystemKicker: "FGA House Solutions",
+        ecosystemTitle: "Scopri l’Ecosistema FGA",
+        ecosystemText: "Esperienze diverse, un unico stile di accoglienza. Se stai gia pensando al tuo prossimo viaggio, puoi esplorare le altre strutture FGA attualmente disponibili.",
+        ecosystemBtn: "Scopri il tuo prossimo soggiorno"
       },
       en: {
         pageTitle: "Guest Guide",
@@ -599,7 +637,7 @@
         rulesBtn: "📄 Full house rules",
         arrivalBtn: "📘 Arrival instructions",
         petBtn: "🐾 Pet rules",
-        extraBtn: "📎 Extra information",
+        extraBtn: "📍 More recommended places",
         labelAddress: "📍 Address",
         labelCheckin: "🕒 Check-in",
         labelCheckout: "🕘 Check-out",
@@ -676,7 +714,10 @@
         exploreText: "If you would like to discover what to see, what to do or which events are happening during your stay, here are the official updated references.",
         discoverBtn: "🌆 Discover Bologna",
         eventsBtn: "🎭 Events in town",
-        footerText: "Enjoy your stay in Bologna"
+        ecosystemKicker: "FGA House Solutions",
+        ecosystemTitle: "Discover the FGA Ecosystem",
+        ecosystemText: "Different stays, one shared style of hospitality. If you are already thinking about your next trip, you can explore the other FGA properties currently available.",
+        ecosystemBtn: "Discover your next stay"
       },
       fr: {
         pageTitle: "Guide d'accueil",
@@ -687,7 +728,7 @@
         rulesBtn: "📄 Regles completes",
         arrivalBtn: "📘 Instructions d'arrivee",
         petBtn: "🐾 Regles animaux",
-        extraBtn: "📎 Informations extra",
+        extraBtn: "📍 Autres adresses conseillees",
         labelAddress: "📍 Adresse",
         labelCheckin: "🕒 Check-in",
         labelCheckout: "🕘 Check-out",
@@ -764,7 +805,10 @@
         exploreText: "Si vous souhaitez decouvrir quoi voir, quoi faire ou les evenements en ville pendant votre sejour, voici les references officielles mises a jour.",
         discoverBtn: "🌆 Decouvrir Bologne",
         eventsBtn: "🎭 Evenements en ville",
-        footerText: "Bon sejour a Bologne"
+        ecosystemKicker: "FGA House Solutions",
+        ecosystemTitle: "Decouvrir l’Ecosysteme FGA",
+        ecosystemText: "Des sejours differents, un meme style d’accueil. Si vous pensez deja a votre prochain voyage, vous pouvez explorer les autres structures FGA actuellement disponibles.",
+        ecosystemBtn: "Decouvrir votre prochain sejour"
       },
       de: {
         pageTitle: "Gastfuhrer",
@@ -775,7 +819,7 @@
         rulesBtn: "📄 Hausregeln",
         arrivalBtn: "📘 Anreisehinweise",
         petBtn: "🐾 Regeln fur Tiere",
-        extraBtn: "📎 Zusatzinformationen",
+        extraBtn: "📍 Weitere Empfehlungen",
         labelAddress: "📍 Adresse",
         labelCheckin: "🕒 Check-in",
         labelCheckout: "🕘 Check-out",
@@ -852,7 +896,10 @@
         exploreText: "Wenn Sie wahrend Ihres Aufenthalts entdecken mochten, was man sehen, unternehmen oder welche Veranstaltungen stattfinden, finden Sie hier die offiziellen aktuellen Links.",
         discoverBtn: "🌆 Bologna entdecken",
         eventsBtn: "🎭 Veranstaltungen",
-        footerText: "Schonen Aufenthalt in Bologna"
+        ecosystemKicker: "FGA House Solutions",
+        ecosystemTitle: "Entdecke das FGA-Okosystem",
+        ecosystemText: "Unterschiedliche Aufenthalte, ein gemeinsamer Stil der Gastfreundschaft. Wenn du schon an deine nachste Reise denkst, kannst du die weiteren derzeit verfugbaren FGA-Unterkunfte entdecken.",
+        ecosystemBtn: "Entdecke deinen nachsten Aufenthalt"
       },
       es: {
         pageTitle: "Guia del huesped",
@@ -863,7 +910,7 @@
         rulesBtn: "📄 Reglas completas",
         arrivalBtn: "📘 Instrucciones de llegada",
         petBtn: "🐾 Reglas para mascotas",
-        extraBtn: "📎 Informacion extra",
+        extraBtn: "📍 Otras direcciones recomendadas",
         labelAddress: "📍 Direccion",
         labelCheckin: "🕒 Check-in",
         labelCheckout: "🕘 Check-out",
@@ -940,7 +987,10 @@
         exploreText: "Si quieres descubrir que ver, que hacer o que eventos hay en la ciudad durante tu estancia, aqui tienes las referencias oficiales actualizadas.",
         discoverBtn: "🌆 Descubrir Bolonia",
         eventsBtn: "🎭 Eventos en la ciudad",
-        footerText: "Feliz estancia en Bolonia"
+        ecosystemKicker: "FGA House Solutions",
+        ecosystemTitle: "Descubre el Ecosistema FGA",
+        ecosystemText: "Experiencias diferentes, un mismo estilo de hospitalidad. Si ya estas pensando en tu proximo viaje, puedes explorar las otras estructuras FGA actualmente disponibles.",
+        ecosystemBtn: "Descubre tu proxima estancia"
       }
     };
 
@@ -1043,8 +1093,10 @@
       setText("explore-text", t.exploreText);
       setText("discover-btn", t.discoverBtn);
       setText("events-btn", t.eventsBtn);
-
-      setText("footer-text", t.footerText);
+      setText("ecosystem-kicker", t.ecosystemKicker);
+      setText("ecosystem-title", t.ecosystemTitle);
+      setText("ecosystem-text", t.ecosystemText);
+      setText("ecosystem-btn", t.ecosystemBtn);
 
       document.getElementById("map-btn").textContent = t.mapBtn;
       document.getElementById("map-btn").href = PROPERTY.mapsUrl;
@@ -1075,7 +1127,13 @@
       coverImage.classList.add("hidden");
       coverFallback.classList.remove("hidden");
     };
-    coverImage.src = PROPERTY.coverImage;
+
+    if (coverImage.complete && coverImage.naturalWidth > 0) {
+      coverImage.classList.remove("hidden");
+      coverFallback.classList.add("hidden");
+    } else {
+      coverImage.src = PROPERTY.coverImage;
+    }
 
     document.querySelectorAll(".lang-btn").forEach((btn) => {
       btn.addEventListener("click", () => render(btn.dataset.lang));
