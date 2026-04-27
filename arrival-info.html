@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrival Info - Terrazze di Via Fondazza</title>
+  <style>
+    :root {
+      --bg: #eef0f4;
+      --card: #f7f7f8;
+      --text: #18213c;
+      --muted: #6b7890;
+      --border: #273454;
+      --primary: #0f1b3d;
+      --primary-hover: #162754;
+      --shadow: 0 8px 24px rgba(15, 27, 61, 0.08);
+      --radius-xl: 26px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .subtitle,
+    .muted {
+      color: var(--muted);
+    }
+
+    .subtitle {
+      font-size: 18px;
+    }
+
+    .space-top {
+      margin-top: 14px;
+    }
+
+    .button-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .lang-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      margin-top: 24px;
+    }
+
+    .actions-grid,
+    .info-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lang-btn,
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 60px;
+      padding: 14px 18px;
+      border-radius: 22px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .lang-btn {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+
+    .lang-btn:hover,
+    .lang-btn.active {
+      background: #e9edf5;
+    }
+
+    .action-btn {
+      background: var(--primary);
+      color: #fff;
+      border: 2px solid var(--border);
+    }
+
+    .action-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .info-item .label {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .info-item .value {
+      font-size: 17px;
+    }
+
+    .tips-list,
+    .steps-list {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .tips-list li + li,
+    .steps-list li + li {
+      margin-top: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 8px 0 24px;
+    }
+
+    @media (max-width: 800px) {
+      .actions-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        padding: 14px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .lang-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .lang-btn {
+        min-height: 48px;
+        padding: 10px 6px;
+        font-size: 12px;
+        border-radius: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="card">
+      <h1 id="page-title"></h1>
+      <p class="subtitle" id="subtitle-1"></p>
+      <p class="subtitle space-top" id="subtitle-2"></p>
+
+      <div class="button-grid lang-grid">
+        <button type="button" class="lang-btn" data-lang="it">Italiano</button>
+        <button type="button" class="lang-btn" data-lang="en">English</button>
+        <button type="button" class="lang-btn" data-lang="fr">Français</button>
+        <button type="button" class="lang-btn" data-lang="de">Deutsch</button>
+        <button type="button" class="lang-btn" data-lang="es">Español</button>
+      </div>
+
+      <div class="button-grid actions-grid" style="margin-top:22px;">
+        <a class="action-btn" href="https://www.google.com/maps/search/?api=1&query=Via+Fondazza+39+Bologna" target="_blank" rel="noopener noreferrer" id="map-btn"></a>
+        <a class="action-btn" href="https://wa.me/393290624796" target="_blank" rel="noopener noreferrer" id="whatsapp-btn"></a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="arrival-title"></h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label" id="address-label"></span>
+          <div class="value">Via Fondazza 39, Bologna</div>
+        </div>
+        <div class="info-item">
+          <span class="label" id="checkin-label"></span>
+          <div class="value">15:00 - 00:00</div>
+        </div>
+      </div>
+      <p class="muted space-top" id="arrival-note"></p>
+    </section>
+
+    <section class="card">
+      <h2 id="airport-title"></h2>
+      <div class="stack">
+        <div>
+          <h3 id="airport-option-1-title"></h3>
+          <ul class="steps-list" id="airport-option-1-list"></ul>
+        </div>
+        <div>
+          <h3 id="airport-option-2-title"></h3>
+          <ul class="steps-list" id="airport-option-2-list"></ul>
+        </div>
+        <div>
+          <h3 id="airport-option-3-title"></h3>
+          <ul class="steps-list" id="airport-option-3-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="station-title"></h2>
+      <div class="stack">
+        <div>
+          <h3 id="station-option-1-title"></h3>
+          <ul class="steps-list" id="station-option-1-list"></ul>
+        </div>
+        <div>
+          <h3 id="station-option-2-title"></h3>
+          <ul class="steps-list" id="station-option-2-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="car-title"></h2>
+      <div class="stack">
+        <p id="car-text"></p>
+        <ul class="tips-list" id="car-list"></ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="before-arrival-title"></h2>
+      <ul class="tips-list" id="before-arrival-list"></ul>
+    </section>
+
+    <div class="footer" id="footer-text"></div>
+  </div>
+
+  <script>
+    const CONTENT = {
+      it: {
+        pageTitle: "Istruzioni arrivo",
+        subtitle1: "Terrazze di Via Fondazza",
+        subtitle2: "Informazioni utili per raggiungere facilmente l'appartamento.",
+        mapBtn: "📍 Apri Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        arrivalTitle: "📌 Informazioni base",
+        addressLabel: "Indirizzo",
+        checkinLabel: "Check-in",
+        arrivalNote: "L'Host inviera prima dell'arrivo le istruzioni per l'apertura del portone principale e il codice della keybox con le chiavi.",
+        airportTitle: "✈️ Se arrivi dall'aeroporto di Bologna",
+        airportOption1Title: "1. Opzione consigliata: taxi diretto",
+        airportOption1List: [
+          "Segui le indicazioni per i taxi ufficiali all'uscita degli arrivi.",
+          "Il tragitto fino a Via Fondazza richiede in genere circa 20-30 minuti, in base al traffico.",
+          "E la soluzione piu comoda se hai bagagli, bambini o arrivi la sera."
+        ],
+        airportOption2Title: "2. Marconi Express + taxi",
+        airportOption2List: [
+          "Dall'aeroporto prendi il Marconi Express fino a Bologna Centrale.",
+          "Il Marconi Express impiega circa 7 minuti ed e attivo in genere dalle 05:40 alle 24:00.",
+          "Dalla stazione prendi un taxi fino all'appartamento: il tratto finale e breve e comodo."
+        ],
+        airportOption3Title: "3. Marconi Express + trasporto pubblico",
+        airportOption3List: [
+          "Prendi il Marconi Express fino a Bologna Centrale.",
+          "Dalla stazione puoi continuare con autobus TPER oppure a piedi, in base all'orario e ai lavori temporanei sulle linee.",
+          "Per il percorso aggiornato in tempo reale ti consigliamo Google Maps o il planner TPER.",
+          "Il biglietto urbano TPER ordinario costa 2,30 euro ed e valido 75 minuti."
+        ],
+        stationTitle: "🚆 Se arrivi alla stazione Bologna Centrale",
+        stationOption1Title: "1. Taxi dalla stazione",
+        stationOption1List: [
+          "Troverai i taxi ufficiali fuori dalla stazione.",
+          "Il tragitto fino all'appartamento richiede di solito circa 10-15 minuti."
+        ],
+        stationOption2Title: "2. Bus o a piedi",
+        stationOption2List: [
+          "Puoi continuare con autobus TPER oppure a piedi, se viaggi leggero.",
+          "Le linee urbane possono cambiare per lavori o deviazioni temporanee, quindi e meglio verificare il tragitto aggiornato al momento."
+        ],
+        carTitle: "🚗 Se arrivi in macchina",
+        carText: "L'appartamento si trova all'interno della ZTL del centro storico di Bologna. Non consigliamo di guidare direttamente fino all'indirizzo senza aver organizzato prima il parcheggio.",
+        carList: [
+          "L'opzione consigliata e il Garage San Petronio Vecchio.",
+          "Il garage puo rilasciare il pass giornaliero per l'accesso ZTL.",
+          "Per soggiorni lunghi ti consigliamo di chiedere in anticipo disponibilita e tariffa aggiornata direttamente al garage.",
+          "Una tariffa giornaliera di circa 25 euro compare su una recente scheda online non ufficiale, ma e bene verificarla prima dell'arrivo."
+        ],
+        beforeArrivalTitle: "🧳 Prima di arrivare",
+        beforeArrivalList: [
+          "Tieni a portata di mano il telefono con WhatsApp attivo.",
+          "Apri le istruzioni dell'Host prima di raggiungere il portone.",
+          "Se arrivi in auto, organizza prima il garage per evitare problemi con la ZTL.",
+          "Se arrivi con i mezzi pubblici, controlla l'ultimo tratto in tempo reale il giorno del viaggio."
+        ],
+        footerText: "Buon viaggio e buon soggiorno a Bologna"
+      },
+      en: {
+        pageTitle: "Arrival instructions",
+        subtitle1: "Terrazze di Via Fondazza",
+        subtitle2: "Useful information to reach the apartment easily.",
+        mapBtn: "📍 Open Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        arrivalTitle: "📌 Basic information",
+        addressLabel: "Address",
+        checkinLabel: "Check-in",
+        arrivalNote: "Before arrival, the host will send instructions to open the main entrance door and the keybox code containing the keys.",
+        airportTitle: "✈️ If you arrive from Bologna Airport",
+        airportOption1Title: "1. Recommended option: direct taxi",
+        airportOption1List: [
+          "Follow the signs for official taxis outside the arrivals area.",
+          "The journey to Via Fondazza usually takes about 20-30 minutes, depending on traffic.",
+          "This is the easiest option if you have luggage, children or a late arrival."
+        ],
+        airportOption2Title: "2. Marconi Express + taxi",
+        airportOption2List: [
+          "From the airport, take the Marconi Express to Bologna Centrale.",
+          "The Marconi Express takes about 7 minutes and usually runs from 05:40 until 24:00.",
+          "From the station, take a taxi to the apartment; the final part is short and convenient."
+        ],
+        airportOption3Title: "3. Marconi Express + public transport",
+        airportOption3List: [
+          "Take the Marconi Express to Bologna Centrale.",
+          "From the station, continue by TPER bus or on foot, depending on the timetable and temporary route changes.",
+          "For the best real-time route, we recommend Google Maps or the TPER journey planner.",
+          "A standard TPER urban ticket costs 2.30 euros and is valid for 75 minutes."
+        ],
+        stationTitle: "🚆 If you arrive at Bologna Centrale station",
+        stationOption1Title: "1. Taxi from the station",
+        stationOption1List: [
+          "Official taxis are available outside the station.",
+          "The ride to the apartment usually takes about 10-15 minutes."
+        ],
+        stationOption2Title: "2. Bus or walking",
+        stationOption2List: [
+          "You can continue by TPER bus or on foot if you are travelling light.",
+          "Urban bus lines may change because of roadworks or temporary diversions, so it is better to check the route on the day of travel."
+        ],
+        carTitle: "🚗 If you arrive by car",
+        carText: "The apartment is inside the ZTL restricted traffic area in Bologna's historic centre. We do not recommend driving directly to the address unless parking has been arranged in advance.",
+        carList: [
+          "The recommended option is Garage San Petronio Vecchio.",
+          "The garage can issue the daily permit for ZTL access.",
+          "For longer stays, please contact the garage in advance to confirm availability and the current rate.",
+          "A daily rate of around 25 euros appears on a recent unofficial online listing, but it should be confirmed before arrival."
+        ],
+        beforeArrivalTitle: "🧳 Before you arrive",
+        beforeArrivalList: [
+          "Keep your phone handy with WhatsApp active.",
+          "Open the host instructions before reaching the entrance door.",
+          "If you are coming by car, arrange the garage in advance to avoid ZTL problems.",
+          "If you are using public transport, check the final stretch in real time on the day of travel."
+        ],
+        footerText: "Safe travels and enjoy your stay in Bologna"
+      },
+      fr: {
+        pageTitle: "Instructions d'arrivee",
+        subtitle1: "Terrazze di Via Fondazza",
+        subtitle2: "Informations utiles pour rejoindre facilement l'appartement.",
+        mapBtn: "📍 Ouvrir Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        arrivalTitle: "📌 Informations de base",
+        addressLabel: "Adresse",
+        checkinLabel: "Check-in",
+        arrivalNote: "Avant votre arrivee, l'hote enverra les instructions pour ouvrir la porte principale et le code de la keybox contenant les cles.",
+        airportTitle: "✈️ Si vous arrivez de l'aeroport de Bologne",
+        airportOption1Title: "1. Option recommandee : taxi direct",
+        airportOption1List: [
+          "Suivez les indications vers les taxis officiels a la sortie des arrivees.",
+          "Le trajet jusqu'a Via Fondazza prend en general environ 20 a 30 minutes selon la circulation.",
+          "C'est la solution la plus simple si vous avez des bagages, des enfants ou une arrivee tardive."
+        ],
+        airportOption2Title: "2. Marconi Express + taxi",
+        airportOption2List: [
+          "Depuis l'aeroport, prenez le Marconi Express jusqu'a Bologna Centrale.",
+          "Le Marconi Express dure environ 7 minutes et fonctionne en general de 05:40 a 24:00.",
+          "Depuis la gare, prenez un taxi jusqu'a l'appartement ; le dernier trajet est court et pratique."
+        ],
+        airportOption3Title: "3. Marconi Express + transports publics",
+        airportOption3List: [
+          "Prenez le Marconi Express jusqu'a Bologna Centrale.",
+          "Depuis la gare, continuez en bus TPER ou a pied selon l'horaire et les deviations temporaires.",
+          "Pour l'itineraire actualise en temps reel, nous vous conseillons Google Maps ou le planner TPER.",
+          "Un billet urbain TPER standard coute 2,30 euros et est valable 75 minutes."
+        ],
+        stationTitle: "🚆 Si vous arrivez a la gare Bologna Centrale",
+        stationOption1Title: "1. Taxi depuis la gare",
+        stationOption1List: [
+          "Les taxis officiels se trouvent a l'exterieur de la gare.",
+          "Le trajet jusqu'a l'appartement dure en general environ 10 a 15 minutes."
+        ],
+        stationOption2Title: "2. Bus ou a pied",
+        stationOption2List: [
+          "Vous pouvez continuer en bus TPER ou a pied si vous voyagez leger.",
+          "Les lignes urbaines peuvent changer en raison de travaux ou deviations temporaires ; il vaut mieux verifier le trajet le jour du voyage."
+        ],
+        carTitle: "🚗 Si vous arrivez en voiture",
+        carText: "L'appartement se trouve a l'interieur de la zone ZTL du centre historique de Bologne. Nous vous deconseillons de conduire directement jusqu'a l'adresse sans avoir organise le parking a l'avance.",
+        carList: [
+          "L'option recommandee est le Garage San Petronio Vecchio.",
+          "Le garage peut delivrer le pass journalier pour l'acces ZTL.",
+          "Pour les sejours longs, nous vous conseillons de contacter le garage a l'avance pour confirmer disponibilite et tarif actuel.",
+          "Un tarif journalier d'environ 25 euros apparait sur une recente fiche en ligne non officielle, mais il faut le confirmer avant l'arrivee."
+        ],
+        beforeArrivalTitle: "🧳 Avant d'arriver",
+        beforeArrivalList: [
+          "Gardez votre telephone a portee de main avec WhatsApp actif.",
+          "Ouvrez les instructions de l'hote avant d'arriver a la porte d'entree.",
+          "Si vous venez en voiture, organisez le garage a l'avance pour eviter les problemes avec la ZTL.",
+          "Si vous utilisez les transports publics, verifiez le dernier trajet en temps reel le jour du voyage."
+        ],
+        footerText: "Bon voyage et bon sejour a Bologne"
+      },
+      de: {
+        pageTitle: "Anreisehinweise",
+        subtitle1: "Terrazze di Via Fondazza",
+        subtitle2: "Nutzliche Informationen, um die Wohnung einfach zu erreichen.",
+        mapBtn: "📍 Google Maps offnen",
+        whatsappBtn: "💬 WhatsApp",
+        arrivalTitle: "📌 Grundinformationen",
+        addressLabel: "Adresse",
+        checkinLabel: "Check-in",
+        arrivalNote: "Vor der Ankunft sendet der Host die Anweisungen zum Offnen des Hauseingangs sowie den Code der Schlusselbox.",
+        airportTitle: "✈️ Wenn Sie vom Flughafen Bologna anreisen",
+        airportOption1Title: "1. Empfohlene Option: direktes Taxi",
+        airportOption1List: [
+          "Folgen Sie den Schildern zu den offiziellen Taxis ausserhalb des Ankunftsbereichs.",
+          "Die Fahrt zur Via Fondazza dauert je nach Verkehr normalerweise etwa 20 bis 30 Minuten.",
+          "Dies ist die einfachste Losung, wenn Sie Gepack, Kinder oder eine spate Ankunft haben."
+        ],
+        airportOption2Title: "2. Marconi Express + Taxi",
+        airportOption2List: [
+          "Nehmen Sie vom Flughafen den Marconi Express bis Bologna Centrale.",
+          "Der Marconi Express braucht etwa 7 Minuten und verkehrt normalerweise von 05:40 bis 24:00.",
+          "Von dort nehmen Sie ein Taxi zur Wohnung; der letzte Abschnitt ist kurz und bequem."
+        ],
+        airportOption3Title: "3. Marconi Express + offentliche Verkehrsmittel",
+        airportOption3List: [
+          "Fahren Sie mit dem Marconi Express bis Bologna Centrale.",
+          "Von dort konnen Sie je nach Uhrzeit und temporaren Umleitungen mit dem TPER-Bus weiterfahren oder zu Fuss gehen.",
+          "Fur die beste Route in Echtzeit empfehlen wir Google Maps oder den TPER-Routenplaner.",
+          "Ein normales TPER-Stadtticket kostet 2,30 Euro und ist 75 Minuten gultig."
+        ],
+        stationTitle: "🚆 Wenn Sie am Bahnhof Bologna Centrale ankommen",
+        stationOption1Title: "1. Taxi vom Bahnhof",
+        stationOption1List: [
+          "Offizielle Taxis finden Sie direkt ausserhalb des Bahnhofs.",
+          "Die Fahrt zur Wohnung dauert normalerweise etwa 10 bis 15 Minuten."
+        ],
+        stationOption2Title: "2. Bus oder zu Fuss",
+        stationOption2List: [
+          "Sie konnen mit dem TPER-Bus weiterfahren oder zu Fuss gehen, wenn Sie leicht reisen.",
+          "Stadtbuslinien konnen sich wegen Bauarbeiten oder Umleitungen andern; prufen Sie die aktuelle Route daher am Reisetag."
+        ],
+        carTitle: "🚗 Wenn Sie mit dem Auto anreisen",
+        carText: "Die Wohnung liegt innerhalb der ZTL im historischen Zentrum von Bologna. Wir empfehlen nicht, direkt zur Adresse zu fahren, wenn der Parkplatz nicht vorher organisiert wurde.",
+        carList: [
+          "Die empfohlene Option ist die Garage San Petronio Vecchio.",
+          "Die Garage kann den taglichen ZTL-Zugang freigeben.",
+          "Bei langeren Aufenthalten empfehlen wir, Verfugbarkeit und aktuellen Tarif vorab direkt mit der Garage zu klaren.",
+          "Ein Tagestarif von etwa 25 Euro erscheint in einem aktuellen inoffiziellen Online-Eintrag, sollte aber vor der Ankunft bestatigt werden."
+        ],
+        beforeArrivalTitle: "🧳 Vor der Ankunft",
+        beforeArrivalList: [
+          "Halten Sie Ihr Telefon mit aktivem WhatsApp bereit.",
+          "Offnen Sie die Anweisungen des Hosts, bevor Sie die Eingangstur erreichen.",
+          "Wenn Sie mit dem Auto kommen, organisieren Sie die Garage im Voraus, um Probleme mit der ZTL zu vermeiden.",
+          "Wenn Sie offentliche Verkehrsmittel nutzen, prufen Sie den letzten Abschnitt am Reisetag in Echtzeit."
+        ],
+        footerText: "Gute Reise und einen schonen Aufenthalt in Bologna"
+      },
+      es: {
+        pageTitle: "Instrucciones de llegada",
+        subtitle1: "Terrazze di Via Fondazza",
+        subtitle2: "Informacion util para llegar facilmente al apartamento.",
+        mapBtn: "📍 Abrir Google Maps",
+        whatsappBtn: "💬 WhatsApp",
+        arrivalTitle: "📌 Informacion basica",
+        addressLabel: "Direccion",
+        checkinLabel: "Check-in",
+        arrivalNote: "Antes de la llegada, el anfitrion enviara las instrucciones para abrir la puerta principal y el codigo de la keybox con las llaves.",
+        airportTitle: "✈️ Si llegas desde el aeropuerto de Bolonia",
+        airportOption1Title: "1. Opcion recomendada: taxi directo",
+        airportOption1List: [
+          "Sigue las indicaciones hacia los taxis oficiales fuera de la zona de llegadas.",
+          "El trayecto hasta Via Fondazza suele durar unos 20 a 30 minutos segun el trafico.",
+          "Es la opcion mas comoda si llevas equipaje, ninos o llegas tarde."
+        ],
+        airportOption2Title: "2. Marconi Express + taxi",
+        airportOption2List: [
+          "Desde el aeropuerto, toma el Marconi Express hasta Bologna Centrale.",
+          "El Marconi Express tarda unos 7 minutos y normalmente funciona de 05:40 a 24:00.",
+          "Desde la estacion, toma un taxi hasta el apartamento; el ultimo tramo es corto y comodo."
+        ],
+        airportOption3Title: "3. Marconi Express + transporte publico",
+        airportOption3List: [
+          "Toma el Marconi Express hasta Bologna Centrale.",
+          "Desde la estacion puedes continuar en autobus TPER o a pie, segun el horario y los desvios temporales.",
+          "Para ver la ruta actualizada en tiempo real, recomendamos Google Maps o el planificador TPER.",
+          "Un billete urbano estandar de TPER cuesta 2,30 euros y vale durante 75 minutos."
+        ],
+        stationTitle: "🚆 Si llegas a la estacion Bologna Centrale",
+        stationOption1Title: "1. Taxi desde la estacion",
+        stationOption1List: [
+          "Encontraras taxis oficiales fuera de la estacion.",
+          "El trayecto hasta el apartamento suele durar unos 10 a 15 minutos."
+        ],
+        stationOption2Title: "2. Bus o a pie",
+        stationOption2List: [
+          "Puedes continuar en autobus TPER o a pie si viajas ligero.",
+          "Las lineas urbanas pueden cambiar por obras o desvios temporales, asi que es mejor comprobar la ruta el mismo dia."
+        ],
+        carTitle: "🚗 Si llegas en coche",
+        carText: "El apartamento esta dentro de la zona ZTL del centro historico de Bolonia. No recomendamos conducir directamente hasta la direccion sin haber organizado antes el aparcamiento.",
+        carList: [
+          "La opcion recomendada es Garage San Petronio Vecchio.",
+          "El garage puede emitir el permiso diario para acceder a la ZTL.",
+          "Para estancias largas, te recomendamos confirmar con antelacion disponibilidad y tarifa actual directamente con el garage.",
+          "Una tarifa diaria de alrededor de 25 euros aparece en una ficha reciente no oficial en internet, pero conviene confirmarla antes de llegar."
+        ],
+        beforeArrivalTitle: "🧳 Antes de llegar",
+        beforeArrivalList: [
+          "Ten a mano el telefono con WhatsApp activo.",
+          "Abre las instrucciones del anfitrion antes de llegar a la puerta principal.",
+          "Si vienes en coche, organiza antes el garage para evitar problemas con la ZTL.",
+          "Si usas transporte publico, revisa el ultimo tramo en tiempo real el dia del viaje."
+        ],
+        footerText: "Buen viaje y feliz estancia en Bolonia"
+      }
+    };
+
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value || "";
+    }
+
+    function setList(id, items) {
+      const list = document.getElementById(id);
+      if (!list) return;
+      list.innerHTML = "";
+      (items || []).forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+    }
+
+    function render(lang) {
+      const t = CONTENT[lang] || CONTENT.it;
+      document.title = `${t.pageTitle} - Terrazze di Via Fondazza`;
+      document.documentElement.lang = lang;
+
+      setText("page-title", t.pageTitle);
+      setText("subtitle-1", t.subtitle1);
+      setText("subtitle-2", t.subtitle2);
+      setText("map-btn", t.mapBtn);
+      setText("whatsapp-btn", t.whatsappBtn);
+      setText("arrival-title", t.arrivalTitle);
+      setText("address-label", t.addressLabel);
+      setText("checkin-label", t.checkinLabel);
+      setText("arrival-note", t.arrivalNote);
+
+      setText("airport-title", t.airportTitle);
+      setText("airport-option-1-title", t.airportOption1Title);
+      setList("airport-option-1-list", t.airportOption1List);
+      setText("airport-option-2-title", t.airportOption2Title);
+      setList("airport-option-2-list", t.airportOption2List);
+      setText("airport-option-3-title", t.airportOption3Title);
+      setList("airport-option-3-list", t.airportOption3List);
+
+      setText("station-title", t.stationTitle);
+      setText("station-option-1-title", t.stationOption1Title);
+      setList("station-option-1-list", t.stationOption1List);
+      setText("station-option-2-title", t.stationOption2Title);
+      setList("station-option-2-list", t.stationOption2List);
+
+      setText("car-title", t.carTitle);
+      setText("car-text", t.carText);
+      setList("car-list", t.carList);
+
+      setText("before-arrival-title", t.beforeArrivalTitle);
+      setList("before-arrival-list", t.beforeArrivalList);
+      setText("footer-text", t.footerText);
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => render(btn.dataset.lang));
+    });
+
+    render("it");
+  </script>
+</body>
+</html>
