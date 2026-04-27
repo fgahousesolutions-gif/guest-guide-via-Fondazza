@@ -90,12 +90,14 @@
     }
 
     .actions-grid,
-    .info-grid {
+    .info-grid,
+    .links-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .lang-btn,
-    .action-btn {
+    .action-btn,
+    .link-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -131,6 +133,16 @@
       background: var(--primary-hover);
     }
 
+    .link-btn {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+
+    .link-btn:hover {
+      background: #e9edf5;
+    }
+
     .stack {
       display: grid;
       gap: 18px;
@@ -139,6 +151,22 @@
     .info-grid {
       display: grid;
       gap: 24px;
+    }
+
+    .alert-box {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: var(--radius-lg);
+      background: #fff4d6;
+      border: 2px solid #d6b14d;
+      color: #5f4710;
+      font-weight: 600;
+    }
+
+    .links-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
     }
 
     .info-item .label {
@@ -172,7 +200,8 @@
 
     @media (max-width: 800px) {
       .actions-grid,
-      .info-grid {
+      .info-grid,
+      .links-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -272,13 +301,30 @@
       <h2 id="car-title"></h2>
       <div class="stack">
         <p id="car-text"></p>
+        <div class="alert-box" id="car-alert"></div>
         <ul class="tips-list" id="car-list"></ul>
+        <div class="button-grid actions-grid">
+          <a class="action-btn" id="garage-map-btn" href="https://www.google.com/maps/search/?api=1&query=Garage+San+Petronio+Vecchio+Bologna" target="_blank" rel="noopener noreferrer"></a>
+          <a class="action-btn" id="garage-call-btn" href="tel:+39051348888"></a>
+        </div>
       </div>
     </section>
 
     <section class="card">
       <h2 id="before-arrival-title"></h2>
       <ul class="tips-list" id="before-arrival-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2 id="links-title"></h2>
+      <p class="muted" id="links-text"></p>
+      <div class="links-grid">
+        <a class="link-btn" id="link-marconi" href="https://www.marconiexpress.it/en/timetable/" target="_blank" rel="noopener noreferrer"></a>
+        <a class="link-btn" id="link-marconi-tickets" href="https://www.marconiexpress.it/en/tickets/where-to-buy-the-tickets/" target="_blank" rel="noopener noreferrer"></a>
+        <a class="link-btn" id="link-tper" href="https://www.tper.it/" target="_blank" rel="noopener noreferrer"></a>
+        <a class="link-btn" id="link-taxi" href="https://www.cotabo.it/" target="_blank" rel="noopener noreferrer"></a>
+        <a class="link-btn" id="link-bologna" href="https://www.bolognawelcome.com/en/information/how-to-get-around" target="_blank" rel="noopener noreferrer"></a>
+      </div>
     </section>
 
     <div class="footer" id="footer-text"></div>
@@ -329,12 +375,17 @@
         ],
         carTitle: "🚗 Se arrivi in macchina",
         carText: "L'appartamento si trova all'interno della ZTL del centro storico di Bologna. Non consigliamo di guidare direttamente fino all'indirizzo senza aver organizzato prima il parcheggio.",
+        carAlert: "Attenzione: non entrare in ZTL senza avere prima organizzato il garage o il relativo accesso autorizzato.",
         carList: [
           "L'opzione consigliata e il Garage San Petronio Vecchio.",
+          "Indirizzo garage: Via San Petronio Vecchio 40/A, Bologna.",
+          "Telefono garage: +39 051 348888.",
           "Il garage puo rilasciare il pass giornaliero per l'accesso ZTL.",
           "Per soggiorni lunghi ti consigliamo di chiedere in anticipo disponibilita e tariffa aggiornata direttamente al garage.",
           "Una tariffa giornaliera di circa 25 euro compare su una recente scheda online non ufficiale, ma e bene verificarla prima dell'arrivo."
         ],
+        garageMapBtn: "🅿️ Apri il garage su Google Maps",
+        garageCallBtn: "📞 Chiama il garage",
         beforeArrivalTitle: "🧳 Prima di arrivare",
         beforeArrivalList: [
           "Tieni a portata di mano il telefono con WhatsApp attivo.",
@@ -342,6 +393,13 @@
           "Se arrivi in auto, organizza prima il garage per evitare problemi con la ZTL.",
           "Se arrivi con i mezzi pubblici, controlla l'ultimo tratto in tempo reale il giorno del viaggio."
         ],
+        linksTitle: "🔗 Link utili ufficiali",
+        linksText: "Qui puoi controllare orari, biglietti e informazioni aggiornate direttamente dalle fonti ufficiali.",
+        linkMarconi: "🚝 Marconi Express - orari",
+        linkMarconiTickets: "🎟️ Marconi Express - biglietti",
+        linkTper: "🚌 TPER - linee e percorso aggiornato",
+        linkTaxi: "🚕 Cotabo - taxi Bologna",
+        linkBologna: "ℹ️ Bologna Welcome - ZTL e come muoversi",
         footerText: "Buon viaggio e buon soggiorno a Bologna"
       },
       en: {
@@ -387,12 +445,17 @@
         ],
         carTitle: "🚗 If you arrive by car",
         carText: "The apartment is inside the ZTL restricted traffic area in Bologna's historic centre. We do not recommend driving directly to the address unless parking has been arranged in advance.",
+        carAlert: "Important: do not enter the ZTL area unless the garage or authorised access has been arranged in advance.",
         carList: [
           "The recommended option is Garage San Petronio Vecchio.",
+          "Garage address: Via San Petronio Vecchio 40/A, Bologna.",
+          "Garage phone: +39 051 348888.",
           "The garage can issue the daily permit for ZTL access.",
           "For longer stays, please contact the garage in advance to confirm availability and the current rate.",
           "A daily rate of around 25 euros appears on a recent unofficial online listing, but it should be confirmed before arrival."
         ],
+        garageMapBtn: "🅿️ Open garage in Google Maps",
+        garageCallBtn: "📞 Call the garage",
         beforeArrivalTitle: "🧳 Before you arrive",
         beforeArrivalList: [
           "Keep your phone handy with WhatsApp active.",
@@ -400,6 +463,13 @@
           "If you are coming by car, arrange the garage in advance to avoid ZTL problems.",
           "If you are using public transport, check the final stretch in real time on the day of travel."
         ],
+        linksTitle: "🔗 Official useful links",
+        linksText: "Here you can check updated schedules, tickets and travel information directly from the official sources.",
+        linkMarconi: "🚝 Marconi Express - timetable",
+        linkMarconiTickets: "🎟️ Marconi Express - tickets",
+        linkTper: "🚌 TPER - lines and live route info",
+        linkTaxi: "🚕 Cotabo - Bologna taxi",
+        linkBologna: "ℹ️ Bologna Welcome - ZTL and getting around",
         footerText: "Safe travels and enjoy your stay in Bologna"
       },
       fr: {
@@ -445,12 +515,17 @@
         ],
         carTitle: "🚗 Si vous arrivez en voiture",
         carText: "L'appartement se trouve a l'interieur de la zone ZTL du centre historique de Bologne. Nous vous deconseillons de conduire directement jusqu'a l'adresse sans avoir organise le parking a l'avance.",
+        carAlert: "Attention : n'entrez pas dans la ZTL sans avoir d'abord organise le garage ou l'acces autorise.",
         carList: [
           "L'option recommandee est le Garage San Petronio Vecchio.",
+          "Adresse du garage : Via San Petronio Vecchio 40/A, Bologna.",
+          "Telephone du garage : +39 051 348888.",
           "Le garage peut delivrer le pass journalier pour l'acces ZTL.",
           "Pour les sejours longs, nous vous conseillons de contacter le garage a l'avance pour confirmer disponibilite et tarif actuel.",
           "Un tarif journalier d'environ 25 euros apparait sur une recente fiche en ligne non officielle, mais il faut le confirmer avant l'arrivee."
         ],
+        garageMapBtn: "🅿️ Ouvrir le garage dans Google Maps",
+        garageCallBtn: "📞 Appeler le garage",
         beforeArrivalTitle: "🧳 Avant d'arriver",
         beforeArrivalList: [
           "Gardez votre telephone a portee de main avec WhatsApp actif.",
@@ -458,6 +533,13 @@
           "Si vous venez en voiture, organisez le garage a l'avance pour eviter les problemes avec la ZTL.",
           "Si vous utilisez les transports publics, verifiez le dernier trajet en temps reel le jour du voyage."
         ],
+        linksTitle: "🔗 Liens officiels utiles",
+        linksText: "Ici vous pouvez verifier les horaires, billets et informations de trajet directement depuis les sources officielles.",
+        linkMarconi: "🚝 Marconi Express - horaires",
+        linkMarconiTickets: "🎟️ Marconi Express - billets",
+        linkTper: "🚌 TPER - lignes et trajet en direct",
+        linkTaxi: "🚕 Cotabo - taxi Bologne",
+        linkBologna: "ℹ️ Bologna Welcome - ZTL et deplacements",
         footerText: "Bon voyage et bon sejour a Bologne"
       },
       de: {
@@ -503,12 +585,17 @@
         ],
         carTitle: "🚗 Wenn Sie mit dem Auto anreisen",
         carText: "Die Wohnung liegt innerhalb der ZTL im historischen Zentrum von Bologna. Wir empfehlen nicht, direkt zur Adresse zu fahren, wenn der Parkplatz nicht vorher organisiert wurde.",
+        carAlert: "Wichtig: Fahren Sie nicht in die ZTL ein, ohne die Garage oder eine autorisierte Zufahrt vorher organisiert zu haben.",
         carList: [
           "Die empfohlene Option ist die Garage San Petronio Vecchio.",
+          "Adresse der Garage: Via San Petronio Vecchio 40/A, Bologna.",
+          "Telefon der Garage: +39 051 348888.",
           "Die Garage kann den taglichen ZTL-Zugang freigeben.",
           "Bei langeren Aufenthalten empfehlen wir, Verfugbarkeit und aktuellen Tarif vorab direkt mit der Garage zu klaren.",
           "Ein Tagestarif von etwa 25 Euro erscheint in einem aktuellen inoffiziellen Online-Eintrag, sollte aber vor der Ankunft bestatigt werden."
         ],
+        garageMapBtn: "🅿️ Garage in Google Maps offnen",
+        garageCallBtn: "📞 Garage anrufen",
         beforeArrivalTitle: "🧳 Vor der Ankunft",
         beforeArrivalList: [
           "Halten Sie Ihr Telefon mit aktivem WhatsApp bereit.",
@@ -516,6 +603,13 @@
           "Wenn Sie mit dem Auto kommen, organisieren Sie die Garage im Voraus, um Probleme mit der ZTL zu vermeiden.",
           "Wenn Sie offentliche Verkehrsmittel nutzen, prufen Sie den letzten Abschnitt am Reisetag in Echtzeit."
         ],
+        linksTitle: "🔗 Offizielle nützliche Links",
+        linksText: "Hier konnen Sie Fahrplane, Tickets und aktuelle Reiseinformationen direkt aus offiziellen Quellen prufen.",
+        linkMarconi: "🚝 Marconi Express - Fahrplan",
+        linkMarconiTickets: "🎟️ Marconi Express - Tickets",
+        linkTper: "🚌 TPER - Linien und aktuelle Route",
+        linkTaxi: "🚕 Cotabo - Taxi Bologna",
+        linkBologna: "ℹ️ Bologna Welcome - ZTL und Mobilitat",
         footerText: "Gute Reise und einen schonen Aufenthalt in Bologna"
       },
       es: {
@@ -561,12 +655,17 @@
         ],
         carTitle: "🚗 Si llegas en coche",
         carText: "El apartamento esta dentro de la zona ZTL del centro historico de Bolonia. No recomendamos conducir directamente hasta la direccion sin haber organizado antes el aparcamiento.",
+        carAlert: "Importante: no entres en la ZTL sin haber organizado antes el garage o el acceso autorizado.",
         carList: [
           "La opcion recomendada es Garage San Petronio Vecchio.",
+          "Direccion del garage: Via San Petronio Vecchio 40/A, Bologna.",
+          "Telefono del garage: +39 051 348888.",
           "El garage puede emitir el permiso diario para acceder a la ZTL.",
           "Para estancias largas, te recomendamos confirmar con antelacion disponibilidad y tarifa actual directamente con el garage.",
           "Una tarifa diaria de alrededor de 25 euros aparece en una ficha reciente no oficial en internet, pero conviene confirmarla antes de llegar."
         ],
+        garageMapBtn: "🅿️ Abrir garage en Google Maps",
+        garageCallBtn: "📞 Llamar al garage",
         beforeArrivalTitle: "🧳 Antes de llegar",
         beforeArrivalList: [
           "Ten a mano el telefono con WhatsApp activo.",
@@ -574,6 +673,13 @@
           "Si vienes en coche, organiza antes el garage para evitar problemas con la ZTL.",
           "Si usas transporte publico, revisa el ultimo tramo en tiempo real el dia del viaje."
         ],
+        linksTitle: "🔗 Enlaces oficiales utiles",
+        linksText: "Aqui puedes consultar horarios, billetes e informacion actualizada directamente en las fuentes oficiales.",
+        linkMarconi: "🚝 Marconi Express - horarios",
+        linkMarconiTickets: "🎟️ Marconi Express - billetes",
+        linkTper: "🚌 TPER - lineas y ruta actualizada",
+        linkTaxi: "🚕 Cotabo - taxi Bolonia",
+        linkBologna: "ℹ️ Bologna Welcome - ZTL y movilidad",
         footerText: "Buen viaje y feliz estancia en Bolonia"
       }
     };
@@ -625,10 +731,20 @@
 
       setText("car-title", t.carTitle);
       setText("car-text", t.carText);
+      setText("car-alert", t.carAlert);
       setList("car-list", t.carList);
+      setText("garage-map-btn", t.garageMapBtn);
+      setText("garage-call-btn", t.garageCallBtn);
 
       setText("before-arrival-title", t.beforeArrivalTitle);
       setList("before-arrival-list", t.beforeArrivalList);
+      setText("links-title", t.linksTitle);
+      setText("links-text", t.linksText);
+      setText("link-marconi", t.linkMarconi);
+      setText("link-marconi-tickets", t.linkMarconiTickets);
+      setText("link-tper", t.linkTper);
+      setText("link-taxi", t.linkTaxi);
+      setText("link-bologna", t.linkBologna);
       setText("footer-text", t.footerText);
 
       document.querySelectorAll(".lang-btn").forEach((btn) => {
