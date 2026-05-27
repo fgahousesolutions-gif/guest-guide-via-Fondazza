@@ -285,6 +285,57 @@
       margin: 0 auto;
     }
 
+    .accordion-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .accordion-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .accordion-icon {
+      flex: 0 0 auto;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 2px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .accordion-panel {
+      margin-top: 18px;
+    }
+
+    .accordion-panel > h2 {
+      display: none;
+    }
+
+    .card.collapsed .accordion-panel {
+      display: none;
+    }
+
+    .card.collapsed .accordion-icon {
+      transform: rotate(-90deg);
+    }
+
     @media (max-width: 900px) {
       .docs-grid,
       .info-grid,
@@ -330,6 +381,10 @@
       }
 
       h2 {
+        font-size: 24px;
+      }
+
+      .accordion-title {
         font-size: 24px;
       }
     }
@@ -450,6 +505,12 @@
       </div>
     </section>
 
+    <section class="card" id="groceries-card">
+      <h2 id="groceries-title"></h2>
+      <p class="section-intro" id="groceries-note"></p>
+      <ul id="groceries-list"></ul>
+    </section>
+
     <section class="card" id="useful-card">
       <h2 id="useful-title"></h2>
       <div class="useful-grid">
@@ -472,6 +533,8 @@
             <div class="note" id="taxi-note"></div>
             <div class="useful-actions">
               <a class="mini-btn" id="taxi-call-btn" href="#" rel="noopener noreferrer"></a>
+              <a class="mini-btn" id="uber-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
+              <a class="mini-btn" id="btaxi-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
             </div>
           </div>
         </div>
@@ -532,13 +595,16 @@
       },
       usefulNumbers: {
         taxiDisplay: "Taxi Bologna Cotabo: +39 051 372727",
-        taxiHref: "tel:+39051372727"
+        taxiHref: "tel:+39051372727",
+        uberHref: "https://www.uber.com/global/it/r/cities/bologna-emilia-romagna-it/",
+        bTaxiHref: "https://www.cotabo.it/clienti/servizi/btaxi/?utm_source=chatgpt.com"
       }
     };
 
     const CONTENT = {
       it: {
         pageTitle: "Guida Ospiti",
+        infoTitle: "ℹ️ Informazioni principali",
         subtitle1: "Guest Guide / Guida Ospiti",
         subtitle2: "Tutte le informazioni utili per un soggiorno semplice e piacevole nel cuore di Bologna.",
         mapBtn: "📍 Google Maps",
@@ -613,6 +679,16 @@
           "<strong>Piazza Maggiore</strong> - Il cuore storico della citta, perfetto per iniziare la visita del centro.",
           "<strong>Le Due Torri</strong> - Piazza di Porta Ravegnana. Simbolo di Bologna; la Torre degli Asinelli risulta attualmente chiusa al pubblico."
         ],
+        groceriesTitle: "🛒 Supermercati e alimentari",
+        groceriesNote: "Alcuni negozi alimentari raggiungibili a piedi da Via Fondazza 39.",
+        groceriesList: [
+          "<strong>Margherita Conad</strong> - Via Orfeo 38/E, circa 5 minuti a piedi (400 m). <a href=\"https://maps.google.com/?q=Margherita+Conad+Via+Orfeo+38E+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Apri su Google Maps</a>",
+          "<strong>Carrefour Express</strong> - Strada Maggiore 31, circa 6 minuti a piedi (500 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Strada+Maggiore+31+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Apri su Google Maps</a>",
+          "<strong>Pam Local</strong> - Via Santo Stefano 29, circa 7 minuti a piedi (550 m). <a href=\"https://maps.google.com/?q=Pam+Local+Via+Santo+Stefano+29+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Apri su Google Maps</a>",
+          "<strong>Carrefour Express</strong> - Via Castiglione 13, circa 8 minuti a piedi (650 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Via+Castiglione+13+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Apri su Google Maps</a>",
+          "<strong>Minimarket Coop</strong> - Strada Maggiore 59, circa 7 minuti a piedi (550 m). <a href=\"https://maps.google.com/?q=Coop+Strada+Maggiore+59+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Apri su Google Maps</a>",
+          "<strong>Carrefour Express Porta Castiglione</strong> - Piazza di Porta Castiglione 14, circa 10 minuti a piedi (800 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Porta+Castiglione+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Apri su Google Maps</a>"
+        ],
         usefulTitle: "📞 Numeri utili",
         emergencyTitle: "Emergenze",
         emergency112: "Numero unico di emergenza",
@@ -621,6 +697,8 @@
         taxiTitle: "Taxi",
         taxiNote: "Servizio radio taxi Bologna",
         taxiCallBtn: "📞 Chiama taxi",
+        uberBtn: "Uber",
+        bTaxiBtn: "App Taxi Bologna",
         exploreTitle: "✨ Continua a esplorare Bologna",
         exploreText: "Se vuoi scoprire cosa vedere, fare o quali eventi ci sono in citta durante il soggiorno, qui trovi i riferimenti ufficiali aggiornati.",
         discoverBtn: "🌆 Scopri Bologna",
@@ -632,6 +710,7 @@
       },
       en: {
         pageTitle: "Guest Guide",
+        infoTitle: "ℹ️ Main information",
         subtitle1: "Guest Guide",
         subtitle2: "All the useful information for a smooth and pleasant stay in the heart of Bologna.",
         mapBtn: "📍 Google Maps",
@@ -706,6 +785,16 @@
           "<strong>Piazza Maggiore</strong> - The historic heart of the city and a perfect starting point for visiting the center.",
           "<strong>The Two Towers</strong> - Piazza di Porta Ravegnana. One of Bologna's best-known symbols; the Asinelli Tower is currently closed to the public."
         ],
+        groceriesTitle: "🛒 Supermarkets and groceries",
+        groceriesNote: "Food shops within walking distance from Via Fondazza 39.",
+        groceriesList: [
+          "<strong>Margherita Conad</strong> - Via Orfeo 38/E, about 5 minutes on foot (400 m). <a href=\"https://maps.google.com/?q=Margherita+Conad+Via+Orfeo+38E+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Open in Google Maps</a>",
+          "<strong>Carrefour Express</strong> - Strada Maggiore 31, about 6 minutes on foot (500 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Strada+Maggiore+31+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Open in Google Maps</a>",
+          "<strong>Pam Local</strong> - Via Santo Stefano 29, about 7 minutes on foot (550 m). <a href=\"https://maps.google.com/?q=Pam+Local+Via+Santo+Stefano+29+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Open in Google Maps</a>",
+          "<strong>Carrefour Express</strong> - Via Castiglione 13, about 8 minutes on foot (650 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Via+Castiglione+13+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Open in Google Maps</a>",
+          "<strong>Minimarket Coop</strong> - Strada Maggiore 59, about 7 minutes on foot (550 m). <a href=\"https://maps.google.com/?q=Coop+Strada+Maggiore+59+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Open in Google Maps</a>",
+          "<strong>Carrefour Express Porta Castiglione</strong> - Piazza di Porta Castiglione 14, about 10 minutes on foot (800 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Porta+Castiglione+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Open in Google Maps</a>"
+        ],
         usefulTitle: "📞 Useful numbers",
         emergencyTitle: "Emergency",
         emergency112: "Single emergency number",
@@ -714,6 +803,8 @@
         taxiTitle: "Taxi",
         taxiNote: "Bologna radio taxi service",
         taxiCallBtn: "📞 Call taxi",
+        uberBtn: "Uber",
+        bTaxiBtn: "Bologna Taxi App",
         exploreTitle: "✨ Keep exploring Bologna",
         exploreText: "If you would like to discover what to see, what to do or which events are happening during your stay, here are the official updated references.",
         discoverBtn: "🌆 Discover Bologna",
@@ -725,6 +816,7 @@
       },
       fr: {
         pageTitle: "Guide d'accueil",
+        infoTitle: "ℹ️ Informations principales",
         subtitle1: "Guide d'accueil",
         subtitle2: "Toutes les informations utiles pour un sejour simple et agreable au coeur de Bologne.",
         mapBtn: "📍 Google Maps",
@@ -799,6 +891,16 @@
           "<strong>Piazza Maggiore</strong> - Le coeur historique de la ville, ideal pour commencer la visite.",
           "<strong>Les Deux Tours</strong> - Piazza di Porta Ravegnana. Symbole de Bologne; la tour Asinelli est actuellement fermee au public."
         ],
+        groceriesTitle: "🛒 Supermarches et epiceries",
+        groceriesNote: "Quelques magasins alimentaires accessibles a pied depuis Via Fondazza 39.",
+        groceriesList: [
+          "<strong>Margherita Conad</strong> - Via Orfeo 38/E, environ 5 minutes a pied (400 m). <a href=\"https://maps.google.com/?q=Margherita+Conad+Via+Orfeo+38E+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Ouvrir dans Google Maps</a>",
+          "<strong>Carrefour Express</strong> - Strada Maggiore 31, environ 6 minutes a pied (500 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Strada+Maggiore+31+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Ouvrir dans Google Maps</a>",
+          "<strong>Pam Local</strong> - Via Santo Stefano 29, environ 7 minutes a pied (550 m). <a href=\"https://maps.google.com/?q=Pam+Local+Via+Santo+Stefano+29+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Ouvrir dans Google Maps</a>",
+          "<strong>Carrefour Express</strong> - Via Castiglione 13, environ 8 minutes a pied (650 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Via+Castiglione+13+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Ouvrir dans Google Maps</a>",
+          "<strong>Minimarket Coop</strong> - Strada Maggiore 59, environ 7 minutes a pied (550 m). <a href=\"https://maps.google.com/?q=Coop+Strada+Maggiore+59+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Ouvrir dans Google Maps</a>",
+          "<strong>Carrefour Express Porta Castiglione</strong> - Piazza di Porta Castiglione 14, environ 10 minutes a pied (800 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Porta+Castiglione+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Ouvrir dans Google Maps</a>"
+        ],
         usefulTitle: "📞 Numeros utiles",
         emergencyTitle: "Urgences",
         emergency112: "Numero d'urgence unique",
@@ -807,6 +909,8 @@
         taxiTitle: "Taxi",
         taxiNote: "Service de radio taxi de Bologne",
         taxiCallBtn: "📞 Appeler un taxi",
+        uberBtn: "Uber",
+        bTaxiBtn: "App Taxi Bologne",
         exploreTitle: "✨ Continuez a explorer Bologne",
         exploreText: "Si vous souhaitez decouvrir quoi voir, quoi faire ou les evenements en ville pendant votre sejour, voici les references officielles mises a jour.",
         discoverBtn: "🌆 Decouvrir Bologne",
@@ -818,6 +922,7 @@
       },
       de: {
         pageTitle: "Gastfuhrer",
+        infoTitle: "ℹ️ Wichtigste Informationen",
         subtitle1: "Gastfuhrer",
         subtitle2: "Alle wichtigen Informationen fur einen angenehmen Aufenthalt im Herzen von Bologna.",
         mapBtn: "📍 Google Maps",
@@ -892,6 +997,16 @@
           "<strong>Piazza Maggiore</strong> - Das historische Herz der Stadt und ideal als Ausgangspunkt fur den Rundgang.",
           "<strong>Die Zwei Turme</strong> - Piazza di Porta Ravegnana. Wahrzeichen von Bologna; der Asinelli-Turm ist derzeit fur Besucher geschlossen."
         ],
+        groceriesTitle: "🛒 Supermarkte und Lebensmittel",
+        groceriesNote: "Lebensmittelgeschafte, die von Via Fondazza 39 zu Fuss erreichbar sind.",
+        groceriesList: [
+          "<strong>Margherita Conad</strong> - Via Orfeo 38/E, ca. 5 Minuten zu Fuss (400 m). <a href=\"https://maps.google.com/?q=Margherita+Conad+Via+Orfeo+38E+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">In Google Maps offnen</a>",
+          "<strong>Carrefour Express</strong> - Strada Maggiore 31, ca. 6 Minuten zu Fuss (500 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Strada+Maggiore+31+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">In Google Maps offnen</a>",
+          "<strong>Pam Local</strong> - Via Santo Stefano 29, ca. 7 Minuten zu Fuss (550 m). <a href=\"https://maps.google.com/?q=Pam+Local+Via+Santo+Stefano+29+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">In Google Maps offnen</a>",
+          "<strong>Carrefour Express</strong> - Via Castiglione 13, ca. 8 Minuten zu Fuss (650 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Via+Castiglione+13+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">In Google Maps offnen</a>",
+          "<strong>Minimarket Coop</strong> - Strada Maggiore 59, ca. 7 Minuten zu Fuss (550 m). <a href=\"https://maps.google.com/?q=Coop+Strada+Maggiore+59+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">In Google Maps offnen</a>",
+          "<strong>Carrefour Express Porta Castiglione</strong> - Piazza di Porta Castiglione 14, ca. 10 Minuten zu Fuss (800 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Porta+Castiglione+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">In Google Maps offnen</a>"
+        ],
         usefulTitle: "📞 Wichtige Nummern",
         emergencyTitle: "Notfalle",
         emergency112: "Einheitliche Notrufnummer",
@@ -900,6 +1015,8 @@
         taxiTitle: "Taxi",
         taxiNote: "Bologna Funk-Taxi",
         taxiCallBtn: "📞 Taxi anrufen",
+        uberBtn: "Uber",
+        bTaxiBtn: "Taxi-App Bologna",
         exploreTitle: "✨ Bologna weiter entdecken",
         exploreText: "Wenn Sie wahrend Ihres Aufenthalts entdecken mochten, was man sehen, unternehmen oder welche Veranstaltungen stattfinden, finden Sie hier die offiziellen aktuellen Links.",
         discoverBtn: "🌆 Bologna entdecken",
@@ -911,6 +1028,7 @@
       },
       es: {
         pageTitle: "Guia del huesped",
+        infoTitle: "ℹ️ Informacion principal",
         subtitle1: "Guia del huesped",
         subtitle2: "Toda la informacion util para una estancia comoda y agradable en el corazon de Bolonia.",
         mapBtn: "📍 Google Maps",
@@ -985,6 +1103,16 @@
           "<strong>Piazza Maggiore</strong> - El corazon historico de la ciudad y un gran punto de partida para la visita.",
           "<strong>Las Dos Torres</strong> - Piazza di Porta Ravegnana. Simbolo de Bolonia; la Torre degli Asinelli esta actualmente cerrada al publico."
         ],
+        groceriesTitle: "🛒 Supermercados y tiendas de alimentacion",
+        groceriesNote: "Tiendas de alimentacion a poca distancia a pie de Via Fondazza 39.",
+        groceriesList: [
+          "<strong>Margherita Conad</strong> - Via Orfeo 38/E, unos 5 minutos a pie (400 m). <a href=\"https://maps.google.com/?q=Margherita+Conad+Via+Orfeo+38E+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir en Google Maps</a>",
+          "<strong>Carrefour Express</strong> - Strada Maggiore 31, unos 6 minutos a pie (500 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Strada+Maggiore+31+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir en Google Maps</a>",
+          "<strong>Pam Local</strong> - Via Santo Stefano 29, unos 7 minutos a pie (550 m). <a href=\"https://maps.google.com/?q=Pam+Local+Via+Santo+Stefano+29+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir en Google Maps</a>",
+          "<strong>Carrefour Express</strong> - Via Castiglione 13, unos 8 minutos a pie (650 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Via+Castiglione+13+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir en Google Maps</a>",
+          "<strong>Minimarket Coop</strong> - Strada Maggiore 59, unos 7 minutos a pie (550 m). <a href=\"https://maps.google.com/?q=Coop+Strada+Maggiore+59+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir en Google Maps</a>",
+          "<strong>Carrefour Express Porta Castiglione</strong> - Piazza di Porta Castiglione 14, unos 10 minutos a pie (800 m). <a href=\"https://maps.google.com/?q=Carrefour+Express+Porta+Castiglione+Bologna\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir en Google Maps</a>"
+        ],
         usefulTitle: "📞 Numeros utiles",
         emergencyTitle: "Emergencias",
         emergency112: "Numero unico de emergencia",
@@ -993,6 +1121,8 @@
         taxiTitle: "Taxi",
         taxiNote: "Servicio de radio taxi de Bolonia",
         taxiCallBtn: "📞 Llamar taxi",
+        uberBtn: "Uber",
+        bTaxiBtn: "App Taxi Bolonia",
         exploreTitle: "✨ Sigue explorando Bolonia",
         exploreText: "Si quieres descubrir que ver, que hacer o que eventos hay en la ciudad durante tu estancia, aqui tienes las referencias oficiales actualizadas.",
         discoverBtn: "🌆 Descubrir Bolonia",
@@ -1037,6 +1167,51 @@
       if (!docConfig) return "";
       if (typeof docConfig === "string") return docConfig;
       return docConfig[lang] || docConfig.fallback || "";
+    }
+
+    const ACCORDION_CARDS = [
+      { id: "info-card", titleKey: "infoTitle" },
+      { id: "access-card", titleKey: "accessTitle" },
+      { id: "rules-card", titleKey: "rulesTitle" },
+      { id: "waste-card", titleKey: "wasteTitle" },
+      { id: "checkout-card", titleKey: "checkoutTitle" },
+      { id: "suggestions-card", titleKey: "suggestionsTitle" },
+      { id: "groceries-card", titleKey: "groceriesTitle" },
+      { id: "useful-card", titleKey: "usefulTitle" },
+      { id: "explore-card", titleKey: "exploreTitle" },
+      { id: "ecosystem-card", titleKey: "ecosystemTitle" }
+    ];
+
+    function initAccordions() {
+      ACCORDION_CARDS.forEach(({ id, titleKey }) => {
+        const card = document.getElementById(id);
+        if (!card || card.querySelector(".accordion-toggle")) return;
+
+        const panel = document.createElement("div");
+        panel.className = "accordion-panel";
+        while (card.firstChild) panel.appendChild(card.firstChild);
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "accordion-toggle";
+        button.setAttribute("aria-expanded", "true");
+        button.dataset.titleKey = titleKey;
+        button.innerHTML = '<span class="accordion-title"></span><span class="accordion-icon" aria-hidden="true">⌄</span>';
+        button.addEventListener("click", () => {
+          const collapsed = card.classList.toggle("collapsed");
+          button.setAttribute("aria-expanded", String(!collapsed));
+        });
+
+        card.appendChild(button);
+        card.appendChild(panel);
+      });
+    }
+
+    function updateAccordionTitles(t) {
+      document.querySelectorAll(".accordion-toggle").forEach((button) => {
+        const title = button.querySelector(".accordion-title");
+        if (title) title.textContent = t[button.dataset.titleKey] || "";
+      });
     }
 
     function render(lang) {
@@ -1086,6 +1261,9 @@
       setHtmlList("aperitivo-list", t.aperitivoList);
       setText("attractions-title", t.attractionsTitle);
       setHtmlList("attractions-list", t.attractionsList);
+      setText("groceries-title", t.groceriesTitle);
+      setText("groceries-note", t.groceriesNote);
+      setHtmlList("groceries-list", t.groceriesList);
 
       setText("useful-title", t.usefulTitle);
       setText("emergency-title", t.emergencyTitle);
@@ -1098,6 +1276,12 @@
       const taxiBtn = document.getElementById("taxi-call-btn");
       taxiBtn.textContent = t.taxiCallBtn;
       taxiBtn.href = PROPERTY.usefulNumbers.taxiHref;
+      const uberBtn = document.getElementById("uber-btn");
+      uberBtn.textContent = t.uberBtn;
+      uberBtn.href = PROPERTY.usefulNumbers.uberHref;
+      const bTaxiBtn = document.getElementById("btaxi-btn");
+      bTaxiBtn.textContent = t.bTaxiBtn;
+      bTaxiBtn.href = PROPERTY.usefulNumbers.bTaxiHref;
 
       setText("explore-title", t.exploreTitle);
       setText("explore-text", t.exploreText);
@@ -1125,6 +1309,8 @@
       document.querySelectorAll(".lang-btn").forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.lang === lang);
       });
+
+      updateAccordionTitles(t);
     }
 
     const coverImage = document.getElementById("cover-image");
@@ -1149,6 +1335,7 @@
       btn.addEventListener("click", () => render(btn.dataset.lang));
     });
 
+    initAccordions();
     render("it");
   </script>
 </body>
