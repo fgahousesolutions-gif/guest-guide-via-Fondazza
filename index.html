@@ -336,6 +336,41 @@
       transform: rotate(-90deg);
     }
 
+    .card.power-card {
+      border: 2px solid #cb5955;
+      background: #fff9f9;
+    }
+
+    .power-card .accordion-icon {
+      color: #a32a28;
+      border-color: #cb5955;
+    }
+
+    .power-card .accordion-title {
+      color: #982b28;
+    }
+
+    .laundry-photo-link {
+      display: block;
+      margin-top: 18px;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .laundry-photo-link img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .laundry-photo-hint {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+    }
+
     @media (max-width: 900px) {
       .docs-grid,
       .info-grid,
@@ -473,6 +508,20 @@
     <section class="card" id="rules-card">
       <h2 id="rules-title"></h2>
       <ul id="rules-list"></ul>
+    </section>
+
+    <section class="card power-card collapsed" id="power-card">
+      <h2 id="power-title"></h2>
+      <p id="power-text"></p>
+    </section>
+
+    <section class="card collapsed" id="laundry-card">
+      <h2 id="laundry-title"></h2>
+      <p id="laundry-text"></p>
+      <a class="laundry-photo-link" href="laundry-switch.jpg" target="_blank" rel="noopener noreferrer" id="laundry-photo-link">
+        <img src="laundry-switch.jpg" id="laundry-photo" alt="" loading="lazy">
+      </a>
+      <p class="laundry-photo-hint" id="laundry-photo-hint"></p>
     </section>
 
     <section class="card" id="waste-card">
@@ -625,6 +674,12 @@
         accessText: "Quando siete davanti al portone principale, inviate un messaggio WhatsApp all'Host al numero indicato: l'Host vi aprira il portone da remoto. Una volta entrati, salite al terzo piano e aprite la keybox con il codice comunicato via messaggio.",
         accessNote: "L'appartamento si trova in centro storico e in zona ZTL: se arrivi in auto ti consigliamo di utilizzare il Garage San Petronio Vecchio.",
         rulesTitle: "🏡 Regole casa",
+        powerTitle: "⚡ Mancanza di corrente",
+        powerText: "In caso di distacco della corrente e necessario raggiungere l'armadio al piano terra, dopo le scale a destra, e riattivare il contatore alzando la leva.",
+        laundryTitle: "🧺 Lavatrice e asciugatrice",
+        laundryText: 'Prima di utilizzare la lavatrice o l’asciugatrice, assicurati che l’interruttore di alimentazione sia acceso. Si trova nel bagno secondario: guardando la lavatrice, sulla parete di sinistra accanto alla finestra.',
+        laundryPhotoHint: 'Tocca la foto per ingrandirla.',
+        laundryPhotoAlt: 'Bagno secondario: lavatrice e asciugatrice, con l’interruttore di alimentazione indicato dalla freccia rossa.',
         rulesList: [
           "L'appartamento e a completa disposizione degli ospiti registrati per tutta la durata del soggiorno.",
           "Sono presenti contenitori chiusi a chiave ad uso esclusivo dello staff: non tentare di aprirli.",
@@ -637,7 +692,6 @@
           "A fine soggiorno le stoviglie devono essere lasciate lavate, utilizzando la lavastoviglie.",
           "Gli elettrodomestici vanno usati correttamente e non lasciati in funzione incustoditi.",
           "Tutti i libretti di istruzione degli elettrodomestici si trovano nel mobile della cucina.",
-          "In caso di distacco della corrente e necessario raggiungere l'armadio al piano terra, dopo le scale a destra, e riattivare il contatore alzando la leva.",
           "L'appartamento si trova in pieno centro storico, all'interno della ZTL: non e raggiungibile in auto senza permesso.",
           "Eventuali danni o smarrimento delle chiavi devono essere segnalati tempestivamente."
         ],
@@ -731,6 +785,12 @@
         accessText: "When you are in front of the main entrance door, send a WhatsApp message to the host at the number provided: the host will open the main door remotely. Once inside, go up to the third floor and open the keybox using the code shared by message.",
         accessNote: "The apartment is in Bologna's historic center and inside the ZTL area. If you arrive by car, we recommend using Garage San Petronio Vecchio.",
         rulesTitle: "🏡 House rules",
+        powerTitle: "⚡ Power outage",
+        powerText: 'If the power goes out, you need to reach the cabinet on the ground floor, after the stairs on the right, and lift the switch to reactivate power.',
+        laundryTitle: "🧺 Washing machine and dryer",
+        laundryText: 'Before using the washing machine or dryer, make sure their power switch is on. It is in the second bathroom: when facing the washing machine, look on the wall to your left, next to the window.',
+        laundryPhotoHint: 'Tap the photo to enlarge it.',
+        laundryPhotoAlt: 'Second bathroom: washing machine and dryer, with the power switch indicated by a red arrow.',
         rulesList: [
           "The apartment is entirely available to registered guests for the whole stay.",
           "Some locked storage units are reserved for staff use only. Please do not try to open them.",
@@ -743,7 +803,6 @@
           "At the end of your stay, dishes must be left washed using the dishwasher.",
           "Appliances must be used correctly and should never be left running unattended.",
           "All appliance manuals are stored in the kitchen cabinet.",
-          "If the power goes out, you need to reach the cabinet on the ground floor, after the stairs on the right, and lift the switch to reactivate power.",
           "The apartment is located in the historic center, inside the ZTL restricted traffic area, and cannot be reached by car without permission.",
           "Any damage or lost keys must be reported promptly."
         ],
@@ -837,6 +896,12 @@
         accessText: "Lorsque vous etes devant la porte principale, envoyez un message WhatsApp a l'hote au numero indique : l'hote ouvrira la porte a distance. Une fois entres, montez au troisieme etage et ouvrez la keybox avec le code communique par message.",
         accessNote: "L'appartement se trouve dans le centre historique et dans la zone ZTL. Si vous arrivez en voiture, nous vous conseillons le Garage San Petronio Vecchio.",
         rulesTitle: "🏡 Regles de la maison",
+        powerTitle: "⚡ Coupure de courant",
+        powerText: "En cas de coupure de courant, il faut rejoindre l'armoire au rez-de-chaussee, apres l'escalier sur la droite, et relever l'interrupteur.",
+        laundryTitle: "🧺 Lave-linge et sèche-linge",
+        laundryText: 'Avant d’utiliser le lave-linge ou le sèche-linge, vérifiez que leur interrupteur d’alimentation est activé. Il se trouve dans la deuxième salle de bains : face au lave-linge, sur le mur à gauche, près de la fenêtre.',
+        laundryPhotoHint: 'Touchez la photo pour l’agrandir.',
+        laundryPhotoAlt: 'Deuxième salle de bains : lave-linge et sèche-linge, avec l’interrupteur indiqué par une flèche rouge.',
         rulesList: [
           "L'appartement est entierement reserve aux voyageurs enregistres pendant tout le sejour.",
           "Certains espaces fermes a cle sont reserves exclusivement au personnel. Merci de ne pas essayer de les ouvrir.",
@@ -849,7 +914,6 @@
           "En fin de sejour, la vaisselle doit etre laissee propre en utilisant le lave-vaisselle.",
           "Les appareils doivent etre utilises correctement et ne pas rester allumes sans surveillance.",
           "Tous les manuels des appareils electromenagers se trouvent dans le meuble de la cuisine.",
-          "En cas de coupure de courant, il faut rejoindre l'armoire au rez-de-chaussee, apres l'escalier sur la droite, et relever l'interrupteur.",
           "L'appartement se trouve dans le centre historique, a l'interieur de la zone a trafic limite, et n'est pas accessible en voiture sans autorisation.",
           "Tout dommage ou perte de cles doit etre signale rapidement."
         ],
@@ -943,6 +1007,12 @@
         accessText: "Wenn Sie vor dem Hauseingang stehen, senden Sie dem Host eine WhatsApp-Nachricht an die angegebene Nummer: Der Host offnet die Haustur aus der Ferne. Gehen Sie danach in den dritten Stock und offnen Sie die Keybox mit dem per Nachricht mitgeteilten Code.",
         accessNote: "Die Wohnung befindet sich im historischen Zentrum und in der ZTL-Zone. Wenn Sie mit dem Auto anreisen, empfehlen wir die Garage San Petronio Vecchio.",
         rulesTitle: "🏡 Hausregeln",
+        powerTitle: "⚡ Stromausfall",
+        powerText: 'Bei einem Stromausfall erreichen Sie den Schrank im Erdgeschoss, nach der Treppe rechts, und schalten den Hebel wieder nach oben.',
+        laundryTitle: "🧺 Waschmaschine und Trockner",
+        laundryText: 'Bevor Sie die Waschmaschine oder den Trockner benutzen, vergewissern Sie sich, dass der Stromschalter eingeschaltet ist. Er befindet sich im zweiten Badezimmer: Wenn Sie vor der Waschmaschine stehen, an der linken Wand neben dem Fenster.',
+        laundryPhotoHint: 'Tippen Sie auf das Foto, um es zu vergrößern.',
+        laundryPhotoAlt: 'Zweites Badezimmer: Waschmaschine und Trockner, mit einem roten Pfeil auf den Stromschalter.',
         rulesList: [
           "Die Wohnung steht den registrierten Gasten wahrend des gesamten Aufenthalts vollstandig zur Verfugung.",
           "Einige abgeschlossene Bereiche sind ausschliesslich fur das Personal bestimmt. Bitte nicht offnen.",
@@ -955,7 +1025,6 @@
           "Am Ende des Aufenthalts muss das Geschirr gespult hinterlassen werden; bitte benutzen Sie dazu die Spulmaschine.",
           "Haushaltsgerate bitte korrekt verwenden und nicht unbeaufsichtigt laufen lassen.",
           "Alle Bedienungsanleitungen der Haushaltsgerate befinden sich im Kuchenschrank.",
-          "Bei einem Stromausfall erreichen Sie den Schrank im Erdgeschoss, nach der Treppe rechts, und schalten den Hebel wieder nach oben.",
           "Die Wohnung liegt im historischen Zentrum innerhalb der verkehrsbeschrankten ZTL-Zone und ist ohne Genehmigung nicht mit dem Auto erreichbar.",
           "Schaden oder verlorene Schlussel mussen umgehend gemeldet werden."
         ],
@@ -1049,6 +1118,12 @@
         accessText: "Cuando esten delante de la puerta principal, envien un mensaje de WhatsApp al anfitrion al numero indicado: el anfitrion abrira la puerta principal a distancia. Una vez dentro, suban al tercer piso y abran la keybox con el codigo enviado por mensaje.",
         accessNote: "El apartamento esta en el centro historico y dentro de la zona ZTL. Si llegas en coche, recomendamos el Garage San Petronio Vecchio.",
         rulesTitle: "🏡 Reglas de la casa",
+        powerTitle: "⚡ Corte de luz",
+        powerText: 'Si se corta la luz, hay que llegar al armario de la planta baja, despues de las escaleras a la derecha, y volver a subir la palanca.',
+        laundryTitle: "🧺 Lavadora y secadora",
+        laundryText: 'Antes de utilizar la lavadora o la secadora, asegúrate de que el interruptor de alimentación esté encendido. Está en el segundo baño: mirando de frente a la lavadora, en la pared de la izquierda, junto a la ventana.',
+        laundryPhotoHint: 'Toca la foto para ampliarla.',
+        laundryPhotoAlt: 'Segundo baño: lavadora y secadora, con el interruptor señalado por una flecha roja.',
         rulesList: [
           "El apartamento esta completamente a disposicion de los huespedes registrados durante toda la estancia.",
           "Algunos espacios cerrados con llave estan reservados solo para el personal. No intentes abrirlos.",
@@ -1061,7 +1136,6 @@
           "Al final de la estancia, la vajilla debe dejarse lavada utilizando el lavavajillas.",
           "Los electrodomesticos deben usarse correctamente y no dejarse funcionando sin supervision.",
           "Todos los manuales de los electrodomesticos se encuentran en el mueble de la cocina.",
-          "Si se corta la luz, hay que llegar al armario de la planta baja, despues de las escaleras a la derecha, y volver a subir la palanca.",
           "El apartamento esta en el centro historico, dentro de la zona de trafico limitado, y no se puede alcanzar en coche sin permiso.",
           "Cualquier dano o perdida de llaves debe comunicarse rapidamente."
         ],
@@ -1173,6 +1247,8 @@
       { id: "info-card", titleKey: "infoTitle" },
       { id: "access-card", titleKey: "accessTitle" },
       { id: "rules-card", titleKey: "rulesTitle" },
+      { id: "power-card", titleKey: "powerTitle" },
+      { id: "laundry-card", titleKey: "laundryTitle" },
       { id: "waste-card", titleKey: "wasteTitle" },
       { id: "checkout-card", titleKey: "checkoutTitle" },
       { id: "suggestions-card", titleKey: "suggestionsTitle" },
@@ -1194,7 +1270,7 @@
         const button = document.createElement("button");
         button.type = "button";
         button.className = "accordion-toggle";
-        button.setAttribute("aria-expanded", "true");
+        button.setAttribute("aria-expanded", String(!card.classList.contains("collapsed")));
         button.dataset.titleKey = titleKey;
         button.innerHTML = '<span class="accordion-title"></span><span class="accordion-icon" aria-hidden="true">⌄</span>';
         button.addEventListener("click", () => {
@@ -1245,6 +1321,13 @@
 
       setText("rules-title", t.rulesTitle);
       setHtmlList("rules-list", t.rulesList);
+      setText("power-title", t.powerTitle);
+      setText("power-text", t.powerText);
+      setText("laundry-title", t.laundryTitle);
+      setText("laundry-text", t.laundryText);
+      setText("laundry-photo-hint", t.laundryPhotoHint);
+      document.getElementById("laundry-photo").alt = t.laundryPhotoAlt;
+      document.getElementById("laundry-photo-link").setAttribute("aria-label", t.laundryPhotoHint);
 
       setText("waste-title", t.wasteTitle);
       setText("waste-text", t.wasteText);
